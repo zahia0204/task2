@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
+  
+  <title>Frontend Mentor | Blog preview card</title>
+
+  <style>
+    *{
+      padding: 0%;
+      margin: 0%;
+      box-sizing: border-box;
+    --Yellow: hsl(47, 88%, 63%);
+    --White: hsl(0, 0%, 100%);
+    --Gray-500: hsl(0, 0%, 42%);
+    --Gray-950: hsl(0, 0%, 7%); 
+  }
+  body{
+    font-family: "Outfit", serif;
+    display: grid;
+    place-content: center;
+    max-height: 100vh;
+    background-color: var(--Yellow);
+  }
+  .container{
+    background-color:var(--White);
+    max-width: 400px;
+    margin: 1rem;
+    padding: 1.5rem;
+    position: relative;
+    outline: 1px solid black;
+  }
+
+  img {
+    width: 100%;
+    display: block;
+  
+  }
+  .container img {
+      border-radius: 1rem;
+      margin-bottom: 1rem;
+
+    }
+  .container .learning{
+    background-color: var(--Yellow);
+    width: min-content;
+    padding: .5rem;
+    font-weight: 800px;
+    border-radius: .5rem;
+  }
+.container .date{
+margin-top: 1;
+}
+.container h2 {
+  margin: 1rem 0;
+}
+.container h2 a {
+  color: var(--Gray-950);
+  font-size: 1.5rem;
+  font-weight: 800;
+  line-height: 1;
+  text-decoration: none;
+}  
+.container h2 a :hover{
+  color: var(--Yellow);
+}
+.container .desc {
+  color: var(--Gray-500);
+  line-height: 1.5rem;
+}
+.container .user{
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+}
+.container .user img { width: 30px;}
+.container .user p {
+  font-weight: 800;
+}
+@media (max-width: 375px) {
+  .container h2 a{
+    font-size: 1.25rem;
+
+  }
+
+  
+}
+
+  </style>
+</head>
+<body>
+<div class="container">
+    <img src="assets/images/illustration-article.svg" alt="">
+    <p class="learning">Learning </p>
+    <p class="date">Published 21 Dec 2023</p>
+  <H2> <a href="#">HTML & CSS foundations</a></H2>
+  <p class="desc">These languages are the backbone of every website, defining structure, content, and presentation.</p>
+<div class="user">
+  <img src="assets/images/image-avatar.webp">
+  <p>  Greg Hooper</p>
+</div>
+  </div>
+</body>
+</html>
