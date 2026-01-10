@@ -1,110 +1,200 @@
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&family=Outfit:wght@100..900&display=swap" rel="stylesheet">
-  <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
-  
-  <title>Frontend Mentor | Blog preview card</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Moyenne Semestre</title>
 
-  <style>
-    *{
-      padding: 0%;
-      margin: 0%;
-      box-sizing: border-box;
-    --Yellow: hsl(47, 88%, 63%);
-    --White: hsl(0, 0%, 100%);
-    --Gray-500: hsl(0, 0%, 42%);
-    --Gray-950: hsl(0, 0%, 7%); 
-  }
-  body{
-    font-family: "Outfit", serif;
-    display: grid;
-    place-content: center;
-    max-height: 100vh;
-    background-color: var(--Yellow);
-  }
-  .container{
-    background-color:var(--White);
-    max-width: 400px;
-    margin: 1rem;
-    padding: 1.5rem;
-    position: relative;
-    outline: 1px solid black;
-  }
-
-  img {
-    width: 100%;
-    display: block;
-  
-  }
-  .container img {
-      border-radius: 1rem;
-      margin-bottom: 1rem;
-
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: #f3f4f6;
+        padding: 15px;
+        margin: 0;
     }
-  .container .learning{
-    background-color: var(--Yellow);
-    width: min-content;
-    padding: .5rem;
-    font-weight: 800px;
-    border-radius: .5rem;
-  }
-.container .date{
-margin-top: 1;
-}
-.container h2 {
-  margin: 1rem 0;
-}
-.container h2 a {
-  color: var(--Gray-950);
-  font-size: 1.5rem;
-  font-weight: 800;
-  line-height: 1;
-  text-decoration: none;
-}  
-.container h2 a :hover{
-  color: var(--Yellow);
-}
-.container .desc {
-  color: var(--Gray-500);
-  line-height: 1.5rem;
-}
-.container .user{
-  margin-top: 1rem;
-  display: flex;
-  align-items: center;
-  gap: .5rem;
-}
-.container .user img { width: 30px;}
-.container .user p {
-  font-weight: 800;
-}
-@media (max-width: 375px) {
-  .container h2 a{
-    font-size: 1.25rem;
 
-  }
+    h1 {
+        text-align: center;
+        font-size: 22px;
+        margin-bottom: 20px;
+    }
 
-  
-}
+    .module {
+        background: white;
+        padding: 15px;
+        margin-bottom: 15px;
+        border-radius: 10px;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
 
-  </style>
+    label {
+        font-size: 14px;
+        margin-top: 6px;
+        display: block;
+    }
+
+    input {
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+        margin-top: 4px;
+        border-radius: 6px;
+        border: 1px solid #ccc;
+    }
+
+    .final {
+        margin-top: 10px;
+        font-weight: bold;
+        font-size: 16px;
+    }
+
+    .green {
+        color: #16a34a;
+    }
+
+    .red {
+        color: #dc2626;
+    }
+
+    button {
+        width: 100%;
+        padding: 14px;
+        font-size: 18px;
+        background: #2563eb;
+        color: white;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+    }
+
+    #result {
+        text-align: center;
+        font-size: 22px;
+        font-weight: bold;
+        margin-top: 20px;
+    }
+</style>
+
 </head>
+
 <body>
-<div class="container">
-    <img src="assets/images/illustration-article.svg" alt="">
-    <p class="learning">Learning </p>
-    <p class="date">Published 21 Dec 2023</p>
-  <H2> <a href="#">HTML & CSS foundations</a></H2>
-  <p class="desc">These languages are the backbone of every website, defining structure, content, and presentation.</p>
-<div class="user">
-  <img src="assets/images/image-avatar.webp">
-  <p>  Greg Hooper</p>
+
+<h1>Moyenne du Semestre</h1>
+
+<div class="module">
+<h3>Algorithms (Coef 3)</h3>
+<label>TP</label><input id="algo_tp">
+<label>TD</label><input id="algo_td">
+<label>Exam</label><input id="algo_exam">
+<div class="final" id="algo_final"></div>
 </div>
-  </div>
+
+<div class="module">
+<h3>Réseaux (Coef 3)</h3>
+<label>TP</label><input id="net_tp">
+<label>TD</label><input id="net_td">
+<label>Exam</label><input id="net_exam">
+<div class="final" id="net_final"></div>
+</div>
+
+<div class="module">
+<h3>ABD (Coef 3)</h3>
+<label>TP</label><input id="abd_tp">
+<label>TD</label><input id="abd_td">
+<label>Exam</label><input id="abd_exam">
+<div class="final" id="abd_final"></div>
+</div>
+
+<div class="module">
+<h3>Cryptography (Coef 3)</h3>
+<label>TP</label><input id="crypto_tp">
+<label>TD</label><input id="crypto_td">
+<label>Exam</label><input id="crypto_exam">
+<div class="final" id="crypto_final"></div>
+</div>
+
+<div class="module">
+<h3>RO (Coef 2)</h3>
+<label>TD</label><input id="ro_td">
+<label>Exam</label><input id="ro_exam">
+<div class="final" id="ro_final"></div>
+</div>
+
+<div class="module">
+<h3>C++ (Coef 2)</h3>
+<label>TP</label><input id="cpp_tp">
+<label>Exam</label><input id="cpp_exam">
+<div class="final" id="cpp_final"></div>
+</div>
+
+<div class="module">
+<h3>AI (Coef 1)</h3>
+<label>Exam</label><input id="ai_exam">
+<div class="final" id="ai_final"></div>
+</div>
+
+<div class="module">
+<h3>Cybercriminalité (Coef 1)</h3>
+<label>Exam</label><input id="cyber_exam">
+<div class="final" id="cyber_final"></div>
+</div>
+
+<button onclick="calculate()">Calculer</button>
+
+<div id="result"></div>
+
+<script>
+function val(id) {
+    return parseFloat(document.getElementById(id).value) || 0;
+}
+
+function setFinal(id, value) {
+    const el = document.getElementById(id);
+    el.innerText = "Note finale : " + value.toFixed(2);
+    el.className = "final " + (value >= 10 ? "green" : "red");
+}
+
+function calculate() {
+    let sum = 0, coefSum = 0;
+
+    let algo = 0.2*val("algo_tp") + 0.2*val("algo_td") + 0.6*val("algo_exam");
+    setFinal("algo_final", algo);
+    sum += algo * 3; coefSum += 3;
+
+    let net = 0.2*val("net_tp") + 0.2*val("net_td") + 0.6*val("net_exam");
+    setFinal("net_final", net);
+    sum += net * 3; coefSum += 3;
+
+    let abd = 0.2*val("abd_tp") + 0.2*val("abd_td") + 0.6*val("abd_exam");
+    setFinal("abd_final", abd);
+    sum += abd * 3; coefSum += 3;
+
+    let crypto = 0.2*val("crypto_tp") + 0.2*val("crypto_td") + 0.6*val("crypto_exam");
+    setFinal("crypto_final", crypto);
+    sum += crypto * 3; coefSum += 3;
+
+    let ro = 0.4*val("ro_td") + 0.6*val("ro_exam");
+    setFinal("ro_final", ro);
+    sum += ro * 2; coefSum += 2;
+
+    let cpp = 0.4*val("cpp_tp") + 0.6*val("cpp_exam");
+    setFinal("cpp_final", cpp);
+    sum += cpp * 2; coefSum += 2;
+
+    let ai = val("ai_exam");
+    setFinal("ai_final", ai);
+    sum += ai; coefSum += 1;
+
+    let cyber = val("cyber_exam");
+    setFinal("cyber_final", cyber);
+    sum += cyber; coefSum += 1;
+
+    let moyenne = sum / coefSum;
+    result.innerText = "Moyenne du semestre : " + moyenne.toFixed(2);
+}
+</script>
+
+
 </body>
 </html>
