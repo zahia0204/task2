@@ -8,179 +8,168 @@
 <style>
 body {
     font-family: Arial, sans-serif;
-    background: #ffe4f0; /* light pink background */
-    padding: 15px;
+    background: #ffe6f0;
     margin: 0;
+    padding: 15px;
 }
 
 h1 {
     text-align: center;
-    font-size: 22px;
-    margin-bottom: 20px;
-    color: #d63384; /* darker pink */
+    color: #c2185b;
 }
 
 .module {
-    background: #fff0f6; /* very light pink card */
-    padding: 15px;
-    margin-bottom: 15px;
+    background: white;
     border-radius: 12px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    padding: 12px;
+    margin-bottom: 15px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
-.module h3 {
-    margin-bottom: 10px;
-    color: #d63384;
+.module h2 {
+    margin: 0 0 8px;
+    color: #d81b60;
+    font-size: 18px;
 }
 
-label {
-    display: block;
-    font-size: 14px;
-    margin-top: 6px;
+.inputs {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
 }
 
 input {
-    width: 100%;
-    padding: 12px;
+    flex: 1;
+    padding: 10px;
     font-size: 16px;
-    margin-top: 4px;
     border-radius: 8px;
-    border: 1px solid #d63384;
+    border: 1px solid #ccc;
 }
 
 .final {
-    margin-top: 10px;
+    margin-top: 8px;
     font-weight: bold;
-    font-size: 16px;
 }
 
-.green { color: #16a34a; }
-.red { color: #dc2626; }
+.green { color: green; }
+.red { color: red; }
 
 button {
     width: 100%;
-    padding: 15px;
+    padding: 14px;
     font-size: 18px;
-    background: #d63384;
-    color: white;
     border: none;
     border-radius: 12px;
-    cursor: pointer;
+    background: #d81b60;
+    color: white;
 }
 
 button:disabled {
-    background: #f5c2e7;
-    cursor: not-allowed;
+    background: #f3a6c3;
 }
 
 #result {
     text-align: center;
-    font-size: 22px;
+    margin-top: 15px;
+    font-size: 20px;
     font-weight: bold;
-    margin-top: 20px;
-    color: #d63384;
 }
+
+    footer {
+    text-align: center;
+    margin-top: 25px;
+    padding: 12px;
+    font-size: 14px;
+    color: #c2185b;
+    font-style: italic;
+}
+
 </style>
 </head>
 
 <body>
 
-<h1>Moyenne du Semestre</h1>
+<h1>Moyenne du semestre </h1>
 
-<!-- MODULES -->
-
+<!-- Algo -->
 <div class="module">
-<h3>Algorithms (Coef 3)</h3>
-<label>TP</label>
-<input id="algo_tp" type="number" inputmode="decimal" min="0" max="20" step="0.01"
-       onkeydown="if(event.key==='Enter'){nextField(this);} checkAllFilled();">
-<label>TD</label>
-<input id="algo_td" type="number" inputmode="decimal" min="0" max="20" step="0.01"
-       onkeydown="if(event.key==='Enter'){nextField(this);} checkAllFilled();">
-<label>Exam</label>
-<input id="algo_exam" type="number" inputmode="decimal" min="0" max="20" step="0.01"
-       onkeydown="if(event.key==='Enter'){nextField(this);} checkAllFilled();">
-<div class="final" id="algo_final"></div>
+<h2>Algo (coef 3)</h2>
+<div class="inputs">
+<input id="algo_tp" placeholder="TP" type="number" inputmode="decimal" min="0" max="20" step="0.01" onkeydown="jump(event,this)" oninput="checkAllFilled()">
+<input id="algo_td" placeholder="TD" type="number" inputmode="decimal" min="0" max="20" step="0.01" onkeydown="jump(event,this)" oninput="checkAllFilled()">
+<input id="algo_exam" placeholder="Exam" type="number" inputmode="decimal" min="0" max="20" step="0.01" onkeydown="jump(event,this)" oninput="checkAllFilled()">
+</div>
+<div id="algo_final" class="final"></div>
 </div>
 
+<!-- Réseaux -->
 <div class="module">
-<h3>Réseaux (Coef 3)</h3>
-<label>TP</label>
-<input id="net_tp" type="number" inputmode="decimal" min="0" max="20" step="0.01"
-       onkeydown="if(event.key==='Enter'){nextField(this);} checkAllFilled();">
-<label>TD</label>
-<input id="net_td" type="number" inputmode="decimal" min="0" max="20" step="0.01"
-       onkeydown="if(event.key==='Enter'){nextField(this);} checkAllFilled();">
-<label>Exam</label>
-<input id="net_exam" type="number" inputmode="decimal" min="0" max="20" step="0.01"
-       onkeydown="if(event.key==='Enter'){nextField(this);} checkAllFilled();">
-<div class="final" id="net_final"></div>
+<h2>Réseaux (coef 3)</h2>
+<div class="inputs">
+<input id="net_tp" placeholder="TP" type="number" inputmode="decimal" min="0" max="20" step="0.01" onkeydown="jump(event,this)" oninput="checkAllFilled()">
+<input id="net_td" placeholder="TD" type="number" inputmode="decimal" min="0" max="20" step="0.01" onkeydown="jump(event,this)" oninput="checkAllFilled()">
+<input id="net_exam" placeholder="Exam" type="number" inputmode="decimal" min="0" max="20" step="0.01" onkeydown="jump(event,this)" oninput="checkAllFilled()">
+</div>
+<div id="net_final" class="final"></div>
 </div>
 
+<!-- ABD -->
 <div class="module">
-<h3>ABD (Coef 3)</h3>
-<label>TP</label>
-<input id="abd_tp" type="number" inputmode="decimal" min="0" max="20" step="0.01"
-       onkeydown="if(event.key==='Enter'){nextField(this);} checkAllFilled();">
-<label>TD</label>
-<input id="abd_td" type="number" inputmode="decimal" min="0" max="20" step="0.01"
-       onkeydown="if(event.key==='Enter'){nextField(this);} checkAllFilled();">
-<label>Exam</label>
-<input id="abd_exam" type="number" inputmode="decimal" min="0" max="20" step="0.01"
-       onkeydown="if(event.key==='Enter'){nextField(this);} checkAllFilled();">
-<div class="final" id="abd_final"></div>
+<h2>ABD (coef 3)</h2>
+<div class="inputs">
+<input id="abd_tp" placeholder="TP" type="number" inputmode="decimal" min="0" max="20" step="0.01" onkeydown="jump(event,this)" oninput="checkAllFilled()">
+<input id="abd_td" placeholder="TD" type="number" inputmode="decimal" min="0" max="20" step="0.01" onkeydown="jump(event,this)" oninput="checkAllFilled()">
+<input id="abd_exam" placeholder="Exam" type="number" inputmode="decimal" min="0" max="20" step="0.01" onkeydown="jump(event,this)" oninput="checkAllFilled()">
+</div>
+<div id="abd_final" class="final"></div>
 </div>
 
+<!-- Crypto -->
 <div class="module">
-<h3>Cryptography (Coef 3)</h3>
-<label>TP</label>
-<input id="crypto_tp" type="number" inputmode="decimal" min="0" max="20" step="0.01"
-       onkeydown="if(event.key==='Enter'){nextField(this);} checkAllFilled();">
-<label>TD</label>
-<input id="crypto_td" type="number" inputmode="decimal" min="0" max="20" step="0.01"
-       onkeydown="if(event.key==='Enter'){nextField(this);} checkAllFilled();">
-<label>Exam</label>
-<input id="crypto_exam" type="number" inputmode="decimal" min="0" max="20" step="0.01"
-       onkeydown="if(event.key==='Enter'){nextField(this);} checkAllFilled();">
-<div class="final" id="crypto_final"></div>
+<h2>Crypto (coef 3)</h2>
+<div class="inputs">
+<input id="crypto_tp" placeholder="TP" type="number" inputmode="decimal" min="0" max="20" step="0.01" onkeydown="jump(event,this)" oninput="checkAllFilled()">
+<input id="crypto_td" placeholder="TD" type="number" inputmode="decimal" min="0" max="20" step="0.01" onkeydown="jump(event,this)" oninput="checkAllFilled()">
+<input id="crypto_exam" placeholder="Exam" type="number" inputmode="decimal" min="0" max="20" step="0.01" onkeydown="jump(event,this)" oninput="checkAllFilled()">
+</div>
+<div id="crypto_final" class="final"></div>
 </div>
 
+<!-- RO -->
 <div class="module">
-<h3>RO (Coef 2)</h3>
-<label>TD</label>
-<input id="ro_td" type="number" inputmode="decimal" min="0" max="20" step="0.01"
-       onkeydown="if(event.key==='Enter'){nextField(this);} checkAllFilled();">
-<label>Exam</label>
-<input id="ro_exam" type="number" inputmode="decimal" min="0" max="20" step="0.01"
-       onkeydown="if(event.key==='Enter'){nextField(this);} checkAllFilled();">
-<div class="final" id="ro_final"></div>
+<h2>RO (coef 1)</h2>
+<div class="inputs">
+<input id="ro_exam" placeholder="Exam" type="number" inputmode="decimal" min="0" max="20" step="0.01" onkeydown="jump(event,this)" oninput="checkAllFilled()">
+</div>
+<div id="ro_final" class="final"></div>
 </div>
 
+<!-- C++ -->
 <div class="module">
-<h3>C++ (Coef 2)</h3>
-<label>TP</label>
-<input id="cpp_tp" type="number" inputmode="decimal" min="0" max="20" step="0.01"
-       onkeydown="if(event.key==='Enter'){nextField(this);} checkAllFilled();">
-<label>Exam</label>
-<input id="cpp_exam" type="number" inputmode="decimal" min="0" max="20" step="0.01"
-       onkeydown="if(event.key==='Enter'){nextField(this);} checkAllFilled();">
-<div class="final" id="cpp_final"></div>
+<h2>C++ (coef 2)</h2>
+<div class="inputs">
+<input id="cpp_tp" placeholder="TP" type="number" inputmode="decimal" min="0" max="20" step="0.01" onkeydown="jump(event,this)" oninput="checkAllFilled()">
+<input id="cpp_exam" placeholder="Exam" type="number" inputmode="decimal" min="0" max="20" step="0.01" onkeydown="jump(event,this)" oninput="checkAllFilled()">
+</div>
+<div id="cpp_final" class="final"></div>
 </div>
 
+<!-- AI -->
 <div class="module">
-<h3>AI (Coef 1)</h3>
-<label>Exam</label>
-<input id="ai_exam" type="number" inputmode="decimal" min="0" max="20" step="0.01"
-       onkeydown="if(event.key==='Enter'){nextField(this);} checkAllFilled();">
-<div class="final" id="ai_final"></div>
+<h2>AI (coef 1)</h2>
+<div class="inputs">
+<input id="ai_exam" placeholder="Exam" type="number" inputmode="decimal" min="0" max="20" step="0.01" onkeydown="jump(event,this)" oninput="checkAllFilled()">
+</div>
+<div id="ai_final" class="final"></div>
 </div>
 
+<!-- Cyber -->
 <div class="module">
-<h3>Cybercriminalité (Coef 1)</h3>
-<label>Exam</label>
-<input id="cyber_exam" type="number" inputmode="decimal" min="0" max="20" step="0.01"
-       onkeydown="if(event.key==='Enter'){nextField(this);} checkAllFilled();">
-<div class="final" id="cyber_final"></div>
+<h2>Cybercriminalité (coef 1)</h2>
+<div class="inputs">
+<input id="cyber_exam" placeholder="Exam" type="number" inputmode="decimal" min="0" max="20" step="0.01" onkeydown="jump(event,this)" oninput="checkAllFilled()">
+</div>
+<div id="cyber_final" class="final"></div>
 </div>
 
 <button id="calcBtn" onclick="calculate()" disabled>Calculer</button>
@@ -188,60 +177,70 @@ button:disabled {
 <div id="result"></div>
 
 <script>
-function nextField(el) {
-    const inputs = Array.from(document.querySelectorAll("input"));
-    const i = inputs.indexOf(el);
-    if(i > -1 && i < inputs.length - 1) inputs[i+1].focus();
+function val(id) {
+    return parseFloat(document.getElementById(id).value);
+}
+
+function jump(e, el) {
+    if (e.key === "Enter") {
+        const inputs = Array.from(document.querySelectorAll("input"));
+        const i = inputs.indexOf(el);
+        if (i < inputs.length - 1) inputs[i + 1].focus();
+    }
 }
 
 function checkAllFilled() {
-    const inputs = document.querySelectorAll("input");
     let ok = true;
-    inputs.forEach(i => { if(i.value === "") ok=false; });
+    document.querySelectorAll("input").forEach(i => {
+        if (i.value === "") ok = false;
+    });
     document.getElementById("calcBtn").disabled = !ok;
 }
 
-function setFinal(id, value) {
+function setFinal(id, note) {
     const el = document.getElementById(id);
-    el.innerText = "Note finale : " + value.toFixed(2);
-    el.className = "final " + (value>=10 ? "green" : "red");
+    el.textContent = "Note finale : " + note.toFixed(2);
+    el.className = "final " + (note >= 10 ? "green" : "red");
 }
-
-function v(id){ return parseFloat(document.getElementById(id).value)||0; }
 
 function calculate() {
-    const btn = document.getElementById("calcBtn");
-    if(btn.disabled){ if(navigator.vibrate) navigator.vibrate(200); return; }
+    if (document.getElementById("calcBtn").disabled) {
+        navigator.vibrate?.(200);
+        return;
+    }
 
-    let sum=0, coef=0;
+    let sum = 0, coef = 0;
 
-    let algo = 0.2*v("algo_tp")+0.2*v("algo_td")+0.6*v("algo_exam");
+    let algo = 0.2*val("algo_tp")+0.2*val("algo_td")+0.6*val("algo_exam");
     setFinal("algo_final", algo); sum+=algo*3; coef+=3;
 
-    let net = 0.2*v("net_tp")+0.2*v("net_td")+0.6*v("net_exam");
+    let net = 0.2*val("net_tp")+0.2*val("net_td")+0.6*val("net_exam");
     setFinal("net_final", net); sum+=net*3; coef+=3;
 
-    let abd = 0.2*v("abd_tp")+0.2*v("abd_td")+0.6*v("abd_exam");
+    let abd = 0.2*val("abd_tp")+0.2*val("abd_td")+0.6*val("abd_exam");
     setFinal("abd_final", abd); sum+=abd*3; coef+=3;
 
-    let crypto = 0.2*v("crypto_tp")+0.2*v("crypto_td")+0.6*v("crypto_exam");
+    let crypto = 0.2*val("crypto_tp")+0.2*val("crypto_td")+0.6*val("crypto_exam");
     setFinal("crypto_final", crypto); sum+=crypto*3; coef+=3;
 
-    let ro = 0.4*v("ro_td")+0.6*v("ro_exam");
-    setFinal("ro_final", ro); sum+=ro*2; coef+=2;
+    let ro = val("ro_exam");
+    setFinal("ro_final", ro); sum+=ro; coef+=1;
 
-    let cpp = 0.4*v("cpp_tp")+0.6*v("cpp_exam");
+    let cpp = 0.4*val("cpp_tp")+0.6*val("cpp_exam");
     setFinal("cpp_final", cpp); sum+=cpp*2; coef+=2;
 
-    let ai = v("ai_exam");
+    let ai = val("ai_exam");
     setFinal("ai_final", ai); sum+=ai; coef+=1;
 
-    let cyber = v("cyber_exam");
+    let cyber = val("cyber_exam");
     setFinal("cyber_final", cyber); sum+=cyber; coef+=1;
 
-    result.innerText = "Moyenne du semestre : " + (sum/coef).toFixed(2);
+    result.textContent = "Moyenne du semestre : " + (sum/coef).toFixed(2);
 }
 </script>
+<footer>
+    ya rabi samah w zahia ytel3o semester 🤲💗
+</footer>
 
 </body>
 </html>
