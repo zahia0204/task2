@@ -46,6 +46,11 @@ input {
     border: 1px solid #ccc;
 }
 
+input.error {
+    border: 2px solid red;
+    background: #ffecec;
+}
+
 .final {
     margin-top: 8px;
     font-weight: bold;
@@ -64,10 +69,6 @@ button {
     color: white;
 }
 
-button:disabled {
-    background: #f3a6c3;
-}
-
 #result {
     text-align: center;
     margin-top: 15px;
@@ -75,7 +76,46 @@ button:disabled {
     font-weight: bold;
 }
 
-    footer {
+/* Popup */
+.popup {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+}
+
+.popup.hidden {
+    display: none;
+}
+
+.popup-box {
+    background: white;
+    padding: 20px;
+    border-radius: 16px;
+    text-align: center;
+    width: 80%;
+    max-width: 300px;
+}
+
+.popup-box p {
+    font-size: 16px;
+    color: #d81b60;
+    margin-bottom: 15px;
+}
+
+.popup-box button {
+    background: #d81b60;
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 10px;
+    font-size: 16px;
+}
+
+footer {
     text-align: center;
     margin-top: 25px;
     padding: 12px;
@@ -83,7 +123,6 @@ button:disabled {
     color: #c2185b;
     font-style: italic;
 }
-
 </style>
 </head>
 
@@ -91,13 +130,14 @@ button:disabled {
 
 <h1>Moyenne du semestre </h1>
 
+<!-- MODULES -->
 <!-- Algo -->
 <div class="module">
 <h2>Algo (coef 3)</h2>
 <div class="inputs">
-<input id="algo_tp" placeholder="TP" type="number" inputmode="decimal" min="0" max="20" step="0.01" onkeydown="jump(event,this)" oninput="checkAllFilled()">
-<input id="algo_td" placeholder="TD" type="number" inputmode="decimal" min="0" max="20" step="0.01" onkeydown="jump(event,this)" oninput="checkAllFilled()">
-<input id="algo_exam" placeholder="Exam" type="number" inputmode="decimal" min="0" max="20" step="0.01" onkeydown="jump(event,this)" oninput="checkAllFilled()">
+<input id="algo_tp" placeholder="TP" type="number" inputmode="decimal" step="0.01" onkeydown="jump(event,this)" onblur="validateInput(this)">
+<input id="algo_td" placeholder="TD" type="number" inputmode="decimal" step="0.01" onkeydown="jump(event,this)" onblur="validateInput(this)">
+<input id="algo_exam" placeholder="Exam" type="number" inputmode="decimal" step="0.01" onkeydown="jump(event,this)" onblur="validateInput(this)">
 </div>
 <div id="algo_final" class="final"></div>
 </div>
@@ -106,9 +146,9 @@ button:disabled {
 <div class="module">
 <h2>Réseaux (coef 3)</h2>
 <div class="inputs">
-<input id="net_tp" placeholder="TP" type="number" inputmode="decimal" min="0" max="20" step="0.01" onkeydown="jump(event,this)" oninput="checkAllFilled()">
-<input id="net_td" placeholder="TD" type="number" inputmode="decimal" min="0" max="20" step="0.01" onkeydown="jump(event,this)" oninput="checkAllFilled()">
-<input id="net_exam" placeholder="Exam" type="number" inputmode="decimal" min="0" max="20" step="0.01" onkeydown="jump(event,this)" oninput="checkAllFilled()">
+<input id="net_tp" placeholder="TP" type="number" inputmode="decimal" step="0.01" onkeydown="jump(event,this)" onblur="validateInput(this)">
+<input id="net_td" placeholder="TD" type="number" inputmode="decimal" step="0.01" onkeydown="jump(event,this)" onblur="validateInput(this)">
+<input id="net_exam" placeholder="Exam" type="number" inputmode="decimal" step="0.01" onkeydown="jump(event,this)" onblur="validateInput(this)">
 </div>
 <div id="net_final" class="final"></div>
 </div>
@@ -117,9 +157,9 @@ button:disabled {
 <div class="module">
 <h2>ABD (coef 3)</h2>
 <div class="inputs">
-<input id="abd_tp" placeholder="TP" type="number" inputmode="decimal" min="0" max="20" step="0.01" onkeydown="jump(event,this)" oninput="checkAllFilled()">
-<input id="abd_td" placeholder="TD" type="number" inputmode="decimal" min="0" max="20" step="0.01" onkeydown="jump(event,this)" oninput="checkAllFilled()">
-<input id="abd_exam" placeholder="Exam" type="number" inputmode="decimal" min="0" max="20" step="0.01" onkeydown="jump(event,this)" oninput="checkAllFilled()">
+<input id="abd_tp" placeholder="TP" type="number" inputmode="decimal" step="0.01" onkeydown="jump(event,this)" onblur="validateInput(this)">
+<input id="abd_td" placeholder="TD" type="number" inputmode="decimal" step="0.01" onkeydown="jump(event,this)" onblur="validateInput(this)">
+<input id="abd_exam" placeholder="Exam" type="number" inputmode="decimal" step="0.01" onkeydown="jump(event,this)" onblur="validateInput(this)">
 </div>
 <div id="abd_final" class="final"></div>
 </div>
@@ -128,9 +168,9 @@ button:disabled {
 <div class="module">
 <h2>Crypto (coef 3)</h2>
 <div class="inputs">
-<input id="crypto_tp" placeholder="TP" type="number" inputmode="decimal" min="0" max="20" step="0.01" onkeydown="jump(event,this)" oninput="checkAllFilled()">
-<input id="crypto_td" placeholder="TD" type="number" inputmode="decimal" min="0" max="20" step="0.01" onkeydown="jump(event,this)" oninput="checkAllFilled()">
-<input id="crypto_exam" placeholder="Exam" type="number" inputmode="decimal" min="0" max="20" step="0.01" onkeydown="jump(event,this)" oninput="checkAllFilled()">
+<input id="crypto_tp" placeholder="TP" type="number" inputmode="decimal" step="0.01" onkeydown="jump(event,this)" onblur="validateInput(this)">
+<input id="crypto_td" placeholder="TD" type="number" inputmode="decimal" step="0.01" onkeydown="jump(event,this)" onblur="validateInput(this)">
+<input id="crypto_exam" placeholder="Exam" type="number" inputmode="decimal" step="0.01" onkeydown="jump(event,this)" onblur="validateInput(this)">
 </div>
 <div id="crypto_final" class="final"></div>
 </div>
@@ -139,7 +179,7 @@ button:disabled {
 <div class="module">
 <h2>RO (coef 1)</h2>
 <div class="inputs">
-<input id="ro_exam" placeholder="Exam" type="number" inputmode="decimal" min="0" max="20" step="0.01" onkeydown="jump(event,this)" oninput="checkAllFilled()">
+<input id="ro_exam" placeholder="Exam" type="number" inputmode="decimal" step="0.01" onkeydown="jump(event,this)" onblur="validateInput(this)">
 </div>
 <div id="ro_final" class="final"></div>
 </div>
@@ -148,8 +188,8 @@ button:disabled {
 <div class="module">
 <h2>C++ (coef 2)</h2>
 <div class="inputs">
-<input id="cpp_tp" placeholder="TP" type="number" inputmode="decimal" min="0" max="20" step="0.01" onkeydown="jump(event,this)" oninput="checkAllFilled()">
-<input id="cpp_exam" placeholder="Exam" type="number" inputmode="decimal" min="0" max="20" step="0.01" onkeydown="jump(event,this)" oninput="checkAllFilled()">
+<input id="cpp_tp" placeholder="TP" type="number" inputmode="decimal" step="0.01" onkeydown="jump(event,this)" onblur="validateInput(this)">
+<input id="cpp_exam" placeholder="Exam" type="number" inputmode="decimal" step="0.01" onkeydown="jump(event,this)" onblur="validateInput(this)">
 </div>
 <div id="cpp_final" class="final"></div>
 </div>
@@ -158,7 +198,7 @@ button:disabled {
 <div class="module">
 <h2>AI (coef 1)</h2>
 <div class="inputs">
-<input id="ai_exam" placeholder="Exam" type="number" inputmode="decimal" min="0" max="20" step="0.01" onkeydown="jump(event,this)" oninput="checkAllFilled()">
+<input id="ai_exam" placeholder="Exam" type="number" inputmode="decimal" step="0.01" onkeydown="jump(event,this)" onblur="validateInput(this)">
 </div>
 <div id="ai_final" class="final"></div>
 </div>
@@ -167,14 +207,22 @@ button:disabled {
 <div class="module">
 <h2>Cybercriminalité (coef 1)</h2>
 <div class="inputs">
-<input id="cyber_exam" placeholder="Exam" type="number" inputmode="decimal" min="0" max="20" step="0.01" onkeydown="jump(event,this)" oninput="checkAllFilled()">
+<input id="cyber_exam" placeholder="Exam" type="number" inputmode="decimal" step="0.01" onkeydown="jump(event,this)" onblur="validateInput(this)">
 </div>
 <div id="cyber_final" class="final"></div>
 </div>
 
-<button id="calcBtn" onclick="calculate()" disabled>Calculer</button>
+<button type="button" onclick="calculate()">Calculer</button>
 
 <div id="result"></div>
+
+<!-- POPUP -->
+<div id="popup" class="popup hidden">
+  <div class="popup-box">
+    <p id="popupMsg"></p>
+    <button onclick="closePopup()">OK</button>
+  </div>
+</div>
 
 <script>
 function val(id) {
@@ -189,12 +237,31 @@ function jump(e, el) {
     }
 }
 
-function checkAllFilled() {
-    let ok = true;
-    document.querySelectorAll("input").forEach(i => {
-        if (i.value === "") ok = false;
-    });
-    document.getElementById("calcBtn").disabled = !ok;
+function validateInput(el) {
+    const v = parseFloat(el.value);
+    if (isNaN(v) || v < 0 || v > 20) {
+        el.value = "";
+        el.classList.add("error");
+        showPopup("⚠️ Notes must be between 0 and 20");
+        el.focus();
+        return false;
+    }
+    el.classList.remove("error");
+    return true;
+}
+
+function allFilled() {
+    return [...document.querySelectorAll("input")].every(i => i.value !== "");
+}
+
+function showPopup(msg) {
+    document.getElementById("popupMsg").textContent = msg;
+    document.getElementById("popup").classList.remove("hidden");
+    navigator.vibrate?.(200);
+}
+
+function closePopup() {
+    document.getElementById("popup").classList.add("hidden");
 }
 
 function setFinal(id, note) {
@@ -204,8 +271,8 @@ function setFinal(id, note) {
 }
 
 function calculate() {
-    if (document.getElementById("calcBtn").disabled) {
-        navigator.vibrate?.(200);
+    if (!allFilled()) {
+        showPopup("⚠️ Please fill all cases");
         return;
     }
 
@@ -235,11 +302,13 @@ function calculate() {
     let cyber = val("cyber_exam");
     setFinal("cyber_final", cyber); sum+=cyber; coef+=1;
 
-    result.textContent = "Moyenne du semestre : " + (sum/coef).toFixed(2);
+    document.getElementById("result").textContent =
+        "Moyenne du semestre : " + (sum/coef).toFixed(2);
 }
 </script>
+
 <footer>
-    ya rabi zahia w samah w houda ytel3o semester 🤲
+    next semester ndirlkom update xd stay tuned
 </footer>
 
 </body>
