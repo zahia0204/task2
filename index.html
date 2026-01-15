@@ -140,9 +140,9 @@ footer {
 <div class="module">
 <h2>Algo (coef 3)</h2>
 <div class="inputs">
-<input id="algo_tp" placeholder="TP" type="number" min="0" max="20" step="0.01" onblur="validateInput(this)">
-<input id="algo_td" placeholder="TD" type="number" min="0" max="20" step="0.01" onblur="validateInput(this)">
-<input id="algo_exam" placeholder="Exam" type="number" min="0" max="20" step="0.01" onblur="validateInput(this)">
+<input id="algo_tp" placeholder="TP" type="number" min="0" max="20" step="0.01">
+<input id="algo_td" placeholder="TD" type="number" min="0" max="20" step="0.01">
+<input id="algo_exam" placeholder="Exam" type="number" min="0" max="20" step="0.01">
 </div>
 <div id="algo_final" class="final"></div>
 </div>
@@ -151,9 +151,9 @@ footer {
 <div class="module">
 <h2>Réseaux (coef 3)</h2>
 <div class="inputs">
-<input id="net_tp" placeholder="TP" type="number" min="0" max="20" step="0.01" onblur="validateInput(this)">
-<input id="net_td" placeholder="TD" type="number" min="0" max="20" step="0.01" onblur="validateInput(this)">
-<input id="net_exam" placeholder="Exam" type="number" min="0" max="20" step="0.01" onblur="validateInput(this)">
+<input id="net_tp" placeholder="TP" type="number" min="0" max="20" step="0.01">
+<input id="net_td" placeholder="TD" type="number" min="0" max="20" step="0.01">
+<input id="net_exam" placeholder="Exam" type="number" min="0" max="20" step="0.01">
 </div>
 <div id="net_final" class="final"></div>
 </div>
@@ -162,9 +162,9 @@ footer {
 <div class="module">
 <h2>ABD (coef 3)</h2>
 <div class="inputs">
-<input id="abd_tp" placeholder="TP" type="number" min="0" max="20" step="0.01" onblur="validateInput(this)">
-<input id="abd_td" placeholder="TD" type="number" min="0" max="20" step="0.01" onblur="validateInput(this)">
-<input id="abd_exam" placeholder="Exam" type="number" min="0" max="20" step="0.01" onblur="validateInput(this)">
+<input id="abd_tp" placeholder="TP" type="number" min="0" max="20" step="0.01">
+<input id="abd_td" placeholder="TD" type="number" min="0" max="20" step="0.01">
+<input id="abd_exam" placeholder="Exam" type="number" min="0" max="20" step="0.01">
 </div>
 <div id="abd_final" class="final"></div>
 </div>
@@ -173,9 +173,9 @@ footer {
 <div class="module">
 <h2>Crypto (coef 3)</h2>
 <div class="inputs">
-<input id="crypto_tp" placeholder="TP" type="number" min="0" max="20" step="0.01" onblur="validateInput(this)">
-<input id="crypto_td" placeholder="TD" type="number" min="0" max="20" step="0.01" onblur="validateInput(this)">
-<input id="crypto_exam" placeholder="Exam" type="number" min="0" max="20" step="0.01" onblur="validateInput(this)">
+<input id="crypto_tp" placeholder="TP" type="number" min="0" max="20" step="0.01">
+<input id="crypto_td" placeholder="TD" type="number" min="0" max="20" step="0.01">
+<input id="crypto_exam" placeholder="Exam" type="number" min="0" max="20" step="0.01">
 </div>
 <div id="crypto_final" class="final"></div>
 </div>
@@ -184,7 +184,7 @@ footer {
 <div class="module">
 <h2>RO (coef 1)</h2>
 <div class="inputs">
-<input id="ro_exam" placeholder="Exam" type="number" min="0" max="20" step="0.01" onblur="validateInput(this)">
+<input id="ro_exam" placeholder="Exam" type="number" min="0" max="20" step="0.01">
 </div>
 <div id="ro_final" class="final"></div>
 </div>
@@ -193,8 +193,8 @@ footer {
 <div class="module">
 <h2>C++ (coef 2)</h2>
 <div class="inputs">
-<input id="cpp_tp" placeholder="TP" type="number" min="0" max="20" step="0.01" onblur="validateInput(this)">
-<input id="cpp_exam" placeholder="Exam" type="number" min="0" max="20" step="0.01" onblur="validateInput(this)">
+<input id="cpp_tp" placeholder="TP" type="number" min="0" max="20" step="0.01">
+<input id="cpp_exam" placeholder="Exam" type="number" min="0" max="20" step="0.01">
 </div>
 <div id="cpp_final" class="final"></div>
 </div>
@@ -203,7 +203,7 @@ footer {
 <div class="module">
 <h2>AI (coef 1)</h2>
 <div class="inputs">
-<input id="ai_exam" placeholder="Exam" type="number" min="0" max="20" step="0.01" onblur="validateInput(this)">
+<input id="ai_exam" placeholder="Exam" type="number" min="0" max="20" step="0.01">
 </div>
 <div id="ai_final" class="final"></div>
 </div>
@@ -212,7 +212,7 @@ footer {
 <div class="module">
 <h2>Cybercriminalité (coef 1)</h2>
 <div class="inputs">
-<input id="cyber_exam" placeholder="Exam" type="number" min="0" max="20" step="0.01" onblur="validateInput(this)">
+<input id="cyber_exam" placeholder="Exam" type="number" min="0" max="20" step="0.01">
 </div>
 <div id="cyber_final" class="final"></div>
 </div>
@@ -230,27 +230,8 @@ footer {
 </div>
 
 <script>
-// List of required fields for each module
-const moduleFields = [
-    // Algo - 3 fields
-    ['algo_tp', 'algo_td', 'algo_exam'],
-    // Réseaux - 3 fields
-    ['net_tp', 'net_td', 'net_exam'],
-    // ABD - 3 fields
-    ['abd_tp', 'abd_td', 'abd_exam'],
-    // Crypto - 3 fields
-    ['crypto_tp', 'crypto_td', 'crypto_exam'],
-    // RO - 1 field
-    ['ro_exam'],
-    // C++ - 2 fields
-    ['cpp_tp', 'cpp_exam'],
-    // AI - 1 field
-    ['ai_exam'],
-    // Cyber - 1 field
-    ['cyber_exam']
-];
-
-function val(id) {
+// SIMPLIFIED VALIDATION - WORKING VERSION
+function getValue(id) {
     const element = document.getElementById(id);
     if (!element) return 0;
     const value = element.value.trim();
@@ -258,67 +239,27 @@ function val(id) {
     return parseFloat(value.replace(",", ".")) || 0;
 }
 
-function validateInput(el) {
-    const value = el.value.trim();
+function validateInput(input) {
+    const value = input.value.trim();
     if (value === '') {
-        el.classList.remove("error");
-        return false;
+        input.classList.remove("error");
+        return true; // Allow empty
     }
     
     const num = parseFloat(value.replace(",", "."));
     if (isNaN(num) || num < 0 || num > 20) {
-        el.classList.add("error");
-        el.value = '';
-        showPopup("⚠️ Veuillez entrer un nombre entre 0 et 20");
+        input.classList.add("error");
+        input.value = '';
         return false;
     }
     
-    el.classList.remove("error");
+    input.classList.remove("error");
     return true;
-}
-
-// Check if all REQUIRED fields are filled
-function allFilled() {
-    let allValid = true;
-    
-    // Clear all errors first
-    document.querySelectorAll('input').forEach(input => {
-        input.classList.remove('error');
-    });
-    
-    // Check each module's required fields
-    for (const fields of moduleFields) {
-        for (const fieldId of fields) {
-            const input = document.getElementById(fieldId);
-            if (!input) continue;
-            
-            const value = input.value.trim();
-            if (value === '') {
-                input.classList.add('error');
-                allValid = false;
-            } else {
-                const num = parseFloat(value.replace(',', '.'));
-                if (isNaN(num) || num < 0 || num > 20) {
-                    input.classList.add('error');
-                    allValid = false;
-                }
-            }
-        }
-    }
-    
-    return allValid;
 }
 
 function showPopup(msg) {
     document.getElementById("popupMsg").textContent = msg;
     document.getElementById("popup").classList.remove("hidden");
-    try {
-        if (navigator.vibrate) {
-            navigator.vibrate(200);
-        }
-    } catch (e) {
-        // Vibration not supported
-    }
 }
 
 function closePopup() {
@@ -332,62 +273,112 @@ function setFinal(id, note) {
     el.className = "final " + (note >= 10 ? "green" : "red");
 }
 
+// SIMPLE CHECK - Only validate that Exam fields are filled
+function validateExamFields() {
+    const examFields = [
+        'algo_exam', 'net_exam', 'abd_exam', 'crypto_exam',
+        'ro_exam', 'cpp_exam', 'ai_exam', 'cyber_exam'
+    ];
+    
+    let allValid = true;
+    
+    examFields.forEach(fieldId => {
+        const input = document.getElementById(fieldId);
+        if (input) {
+            const value = input.value.trim();
+            if (value === '') {
+                input.classList.add('error');
+                allValid = false;
+            } else {
+                const num = parseFloat(value.replace(',', '.'));
+                if (isNaN(num) || num < 0 || num > 20) {
+                    input.classList.add('error');
+                    allValid = false;
+                } else {
+                    input.classList.remove('error');
+                }
+            }
+        }
+    });
+    
+    return allValid;
+}
+
 function calculate() {
     console.log('Calculate function called');
     
-    // First validate all inputs
-    if (!allFilled()) {
-        showPopup("⚠️ Veuillez remplir tous les champs avec des nombres entre 0 et 20");
+    // Clear all errors first
+    document.querySelectorAll('input').forEach(input => {
+        input.classList.remove('error');
+    });
+    
+    // Only validate Exam fields (most important)
+    if (!validateExamFields()) {
+        showPopup("⚠️ Veuillez remplir toutes les notes d'Exam (entre 0 et 20)");
         return;
     }
     
     try {
         let sum = 0, coef = 0;
 
-        // Algo
-        let algo = 0.2 * val("algo_tp") + 0.2 * val("algo_td") + 0.6 * val("algo_exam");
+        // Algo - All fields required for calculation
+        let algo_tp = getValue("algo_tp");
+        let algo_td = getValue("algo_td");
+        let algo_exam = getValue("algo_exam");
+        let algo = 0.2 * algo_tp + 0.2 * algo_td + 0.6 * algo_exam;
         setFinal("algo_final", algo);
         sum += algo * 3;
         coef += 3;
 
         // Réseaux
-        let net = 0.2 * val("net_tp") + 0.2 * val("net_td") + 0.6 * val("net_exam");
+        let net_tp = getValue("net_tp");
+        let net_td = getValue("net_td");
+        let net_exam = getValue("net_exam");
+        let net = 0.2 * net_tp + 0.2 * net_td + 0.6 * net_exam;
         setFinal("net_final", net);
         sum += net * 3;
         coef += 3;
 
         // ABD
-        let abd = 0.2 * val("abd_tp") + 0.2 * val("abd_td") + 0.6 * val("abd_exam");
+        let abd_tp = getValue("abd_tp");
+        let abd_td = getValue("abd_td");
+        let abd_exam = getValue("abd_exam");
+        let abd = 0.2 * abd_tp + 0.2 * abd_td + 0.6 * abd_exam;
         setFinal("abd_final", abd);
         sum += abd * 3;
         coef += 3;
 
         // Crypto
-        let crypto = 0.2 * val("crypto_tp") + 0.2 * val("crypto_td") + 0.6 * val("crypto_exam");
+        let crypto_tp = getValue("crypto_tp");
+        let crypto_td = getValue("crypto_td");
+        let crypto_exam = getValue("crypto_exam");
+        let crypto = 0.2 * crypto_tp + 0.2 * crypto_td + 0.6 * crypto_exam;
         setFinal("crypto_final", crypto);
         sum += crypto * 3;
         coef += 3;
 
         // RO
-        let ro = val("ro_exam");
+        let ro = getValue("ro_exam");
         setFinal("ro_final", ro);
         sum += ro;
         coef += 1;
 
         // C++
-        let cpp = 0.4 * val("cpp_tp") + 0.6 * val("cpp_exam");
+        let cpp_tp = getValue("cpp_tp");
+        let cpp_exam = getValue("cpp_exam");
+        let cpp = 0.4 * cpp_tp + 0.6 * cpp_exam;
         setFinal("cpp_final", cpp);
         sum += cpp * 2;
         coef += 2;
 
         // AI
-        let ai = val("ai_exam");
+        let ai = getValue("ai_exam");
         setFinal("ai_final", ai);
         sum += ai;
         coef += 1;
 
         // Cyber
-        let cyber = val("cyber_exam");
+        let cyber = getValue("cyber_exam");
         setFinal("cyber_final", cyber);
         sum += cyber;
         coef += 1;
@@ -402,15 +393,22 @@ function calculate() {
         
     } catch (error) {
         console.error('Error in calculation:', error);
-        showPopup("Erreur: " + error.message);
+        showPopup("Erreur de calcul: " + error.message);
     }
 }
 
-// Add Enter key support for inputs
+// Add input validation on blur
 document.querySelectorAll('input').forEach(input => {
+    input.addEventListener('blur', function() {
+        validateInput(this);
+    });
+    
     input.addEventListener('keypress', function(e) {
         if (e.key === 'Enter') {
             e.preventDefault();
+            validateInput(this);
+            
+            // Move to next input or calculate
             const inputs = Array.from(document.querySelectorAll('input'));
             const index = inputs.indexOf(this);
             if (index < inputs.length - 1) {
@@ -421,6 +419,9 @@ document.querySelectorAll('input').forEach(input => {
         }
     });
 });
+
+// Initialize
+console.log('Grade calculator ready');
 </script>
 
 <footer>
