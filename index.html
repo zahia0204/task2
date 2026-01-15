@@ -271,6 +271,9 @@ function setFinal(id, note) {
 }
 
 function calculate() {
+
+    document.activeElement.blur();
+
     if (!allFilled()) {
         showPopup("⚠️ Please fill all cases");
         return;
@@ -305,6 +308,7 @@ function calculate() {
     document.getElementById("result").textContent =
         "Moyenne du semestre : " + (sum/coef).toFixed(2);
 }
+
 </script>
 
 <footer>
