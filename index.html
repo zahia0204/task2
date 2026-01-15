@@ -67,6 +67,11 @@ button {
     border-radius: 12px;
     background: #d81b60;
     color: white;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #c2185b;
 }
 
 #result {
@@ -128,16 +133,16 @@ footer {
 
 <body>
 
-<h1>Moyenne du semestre </h1>
+<h1>Moyenne du semestre</h1>
 
 <!-- MODULES -->
 <!-- Algo -->
 <div class="module">
 <h2>Algo (coef 3)</h2>
 <div class="inputs">
-<input id="algo_tp" placeholder="TP" type="number" inputmode="decimal" step="0.01" onkeydown="jump(event,this)" onblur="validateInput(this)">
-<input id="algo_td" placeholder="TD" type="number" inputmode="decimal" step="0.01" onkeydown="jump(event,this)" onblur="validateInput(this)">
-<input id="algo_exam" placeholder="Exam" type="number" inputmode="decimal" step="0.01" onkeydown="jump(event,this)" onblur="validateInput(this)">
+<input id="algo_tp" placeholder="TP" type="number" min="0" max="20" step="0.01" onkeydown="jump(event,this)" onblur="validateInput(this)">
+<input id="algo_td" placeholder="TD" type="number" min="0" max="20" step="0.01" onkeydown="jump(event,this)" onblur="validateInput(this)">
+<input id="algo_exam" placeholder="Exam" type="number" min="0" max="20" step="0.01" onkeydown="jump(event,this)" onblur="validateInput(this)">
 </div>
 <div id="algo_final" class="final"></div>
 </div>
@@ -146,9 +151,9 @@ footer {
 <div class="module">
 <h2>Réseaux (coef 3)</h2>
 <div class="inputs">
-<input id="net_tp" placeholder="TP" type="number" inputmode="decimal" step="0.01" onkeydown="jump(event,this)" onblur="validateInput(this)">
-<input id="net_td" placeholder="TD" type="number" inputmode="decimal" step="0.01" onkeydown="jump(event,this)" onblur="validateInput(this)">
-<input id="net_exam" placeholder="Exam" type="number" inputmode="decimal" step="0.01" onkeydown="jump(event,this)" onblur="validateInput(this)">
+<input id="net_tp" placeholder="TP" type="number" min="0" max="20" step="0.01" onkeydown="jump(event,this)" onblur="validateInput(this)">
+<input id="net_td" placeholder="TD" type="number" min="0" max="20" step="0.01" onkeydown="jump(event,this)" onblur="validateInput(this)">
+<input id="net_exam" placeholder="Exam" type="number" min="0" max="20" step="0.01" onkeydown="jump(event,this)" onblur="validateInput(this)">
 </div>
 <div id="net_final" class="final"></div>
 </div>
@@ -157,9 +162,9 @@ footer {
 <div class="module">
 <h2>ABD (coef 3)</h2>
 <div class="inputs">
-<input id="abd_tp" placeholder="TP" type="number" inputmode="decimal" step="0.01" onkeydown="jump(event,this)" onblur="validateInput(this)">
-<input id="abd_td" placeholder="TD" type="number" inputmode="decimal" step="0.01" onkeydown="jump(event,this)" onblur="validateInput(this)">
-<input id="abd_exam" placeholder="Exam" type="number" inputmode="decimal" step="0.01" onkeydown="jump(event,this)" onblur="validateInput(this)">
+<input id="abd_tp" placeholder="TP" type="number" min="0" max="20" step="0.01" onkeydown="jump(event,this)" onblur="validateInput(this)">
+<input id="abd_td" placeholder="TD" type="number" min="0" max="20" step="0.01" onkeydown="jump(event,this)" onblur="validateInput(this)">
+<input id="abd_exam" placeholder="Exam" type="number" min="0" max="20" step="0.01" onkeydown="jump(event,this)" onblur="validateInput(this)">
 </div>
 <div id="abd_final" class="final"></div>
 </div>
@@ -168,9 +173,9 @@ footer {
 <div class="module">
 <h2>Crypto (coef 3)</h2>
 <div class="inputs">
-<input id="crypto_tp" placeholder="TP" type="number" inputmode="decimal" step="0.01" onkeydown="jump(event,this)" onblur="validateInput(this)">
-<input id="crypto_td" placeholder="TD" type="number" inputmode="decimal" step="0.01" onkeydown="jump(event,this)" onblur="validateInput(this)">
-<input id="crypto_exam" placeholder="Exam" type="number" inputmode="decimal" step="0.01" onkeydown="jump(event,this)" onblur="validateInput(this)">
+<input id="crypto_tp" placeholder="TP" type="number" min="0" max="20" step="0.01" onkeydown="jump(event,this)" onblur="validateInput(this)">
+<input id="crypto_td" placeholder="TD" type="number" min="0" max="20" step="0.01" onkeydown="jump(event,this)" onblur="validateInput(this)">
+<input id="crypto_exam" placeholder="Exam" type="number" min="0" max="20" step="0.01" onkeydown="jump(event,this)" onblur="validateInput(this)">
 </div>
 <div id="crypto_final" class="final"></div>
 </div>
@@ -179,7 +184,7 @@ footer {
 <div class="module">
 <h2>RO (coef 1)</h2>
 <div class="inputs">
-<input id="ro_exam" placeholder="Exam" type="number" inputmode="decimal" step="0.01" onkeydown="jump(event,this)" onblur="validateInput(this)">
+<input id="ro_exam" placeholder="Exam" type="number" min="0" max="20" step="0.01" onkeydown="jump(event,this)" onblur="validateInput(this)">
 </div>
 <div id="ro_final" class="final"></div>
 </div>
@@ -188,8 +193,8 @@ footer {
 <div class="module">
 <h2>C++ (coef 2)</h2>
 <div class="inputs">
-<input id="cpp_tp" placeholder="TP" type="number" inputmode="decimal" step="0.01" onkeydown="jump(event,this)" onblur="validateInput(this)">
-<input id="cpp_exam" placeholder="Exam" type="number" inputmode="decimal" step="0.01" onkeydown="jump(event,this)" onblur="validateInput(this)">
+<input id="cpp_tp" placeholder="TP" type="number" min="0" max="20" step="0.01" onkeydown="jump(event,this)" onblur="validateInput(this)">
+<input id="cpp_exam" placeholder="Exam" type="number" min="0" max="20" step="0.01" onkeydown="jump(event,this)" onblur="validateInput(this)">
 </div>
 <div id="cpp_final" class="final"></div>
 </div>
@@ -198,7 +203,7 @@ footer {
 <div class="module">
 <h2>AI (coef 1)</h2>
 <div class="inputs">
-<input id="ai_exam" placeholder="Exam" type="number" inputmode="decimal" step="0.01" onkeydown="jump(event,this)" onblur="validateInput(this)">
+<input id="ai_exam" placeholder="Exam" type="number" min="0" max="20" step="0.01" onkeydown="jump(event,this)" onblur="validateInput(this)">
 </div>
 <div id="ai_final" class="final"></div>
 </div>
@@ -207,7 +212,7 @@ footer {
 <div class="module">
 <h2>Cybercriminalité (coef 1)</h2>
 <div class="inputs">
-<input id="cyber_exam" placeholder="Exam" type="number" inputmode="decimal" step="0.01" onkeydown="jump(event,this)" onblur="validateInput(this)">
+<input id="cyber_exam" placeholder="Exam" type="number" min="0" max="20" step="0.01" onkeydown="jump(event,this)" onblur="validateInput(this)">
 </div>
 <div id="cyber_final" class="final"></div>
 </div>
@@ -225,52 +230,81 @@ footer {
 </div>
 
 <script>
+// DOM is loaded
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('Grade calculator loaded');
+});
+
 function val(id) {
-    return parseFloat(document.getElementById(id).value);
+    const element = document.getElementById(id);
+    if (!element) return 0;
+    const value = element.value.trim();
+    if (value === '') return 0;
+    return parseFloat(value.replace(",", ".")) || 0;
 }
 
 function jump(e, el) {
     if (e.key === "Enter") {
+        e.preventDefault();
         const inputs = Array.from(document.querySelectorAll("input"));
         const i = inputs.indexOf(el);
-        if (i < inputs.length - 1) inputs[i + 1].focus();
+        if (i < inputs.length - 1) {
+            inputs[i + 1].focus();
+        }
     }
 }
 
-// ✅ FIXED: proper numeric validation
 function validateInput(el) {
-    const v = parseFloat(el.value.replace(",", "."));
-    if (isNaN(v) || v < 0 || v > 20) {
-        el.value = "";
+    const value = el.value.trim();
+    if (value === '') {
+        el.classList.remove("error");
+        return true;
+    }
+    
+    const num = parseFloat(value.replace(",", "."));
+    if (isNaN(num) || num < 0 || num > 20) {
         el.classList.add("error");
-        showPopup("⚠️ Notes must be between 0 and 20");
-        el.focus();
+        el.value = '';
         return false;
     }
+    
     el.classList.remove("error");
     return true;
 }
 
-// ✅ FIXED: allFilled checks actual numeric values
 function allFilled() {
-    // blur the currently focused input to commit any value
-    if (document.activeElement.tagName === "INPUT") {
-        document.activeElement.blur();
-    }
-
-    return [...document.querySelectorAll("input")].every(i => {
-        const raw = i.value.trim();
-        if (raw === "") return false; // empty
-        const v = parseFloat(raw.replace(",", "."));
-        return !isNaN(v) && v >= 0 && v <= 20;
+    const inputs = document.querySelectorAll('input');
+    let allValid = true;
+    
+    inputs.forEach(input => {
+        const value = input.value.trim();
+        if (value === '') {
+            input.classList.add('error');
+            allValid = false;
+        } else {
+            const num = parseFloat(value.replace(',', '.'));
+            if (isNaN(num) || num < 0 || num > 20) {
+                input.classList.add('error');
+                allValid = false;
+            } else {
+                input.classList.remove('error');
+            }
+        }
     });
+    
+    return allValid;
 }
-
 
 function showPopup(msg) {
     document.getElementById("popupMsg").textContent = msg;
     document.getElementById("popup").classList.remove("hidden");
-    navigator.vibrate?.(200);
+    try {
+        if (navigator.vibrate) {
+            navigator.vibrate(200);
+        }
+    } catch (e) {
+        // Vibration not supported
+    }
 }
 
 function closePopup() {
@@ -279,47 +313,94 @@ function closePopup() {
 
 function setFinal(id, note) {
     const el = document.getElementById(id);
+    if (!el) return;
     el.textContent = "Note finale : " + note.toFixed(2);
     el.className = "final " + (note >= 10 ? "green" : "red");
 }
 
 function calculate() {
-
-
+    console.log('Calculate function called');
+    
+    // First validate all inputs
     if (!allFilled()) {
-        showPopup("⚠️ Please fill all cases with numbers 0–20");
+        showPopup("⚠️ Veuillez remplir tous les champs avec des nombres entre 0 et 20");
         return;
     }
+    
+    try {
+        let sum = 0, coef = 0;
 
-    let sum = 0, coef = 0;
+        // Algo
+        let algo = 0.2 * val("algo_tp") + 0.2 * val("algo_td") + 0.6 * val("algo_exam");
+        setFinal("algo_final", algo);
+        sum += algo * 3;
+        coef += 3;
 
-    let algo = 0.2*val("algo_tp")+0.2*val("algo_td")+0.6*val("algo_exam");
-    setFinal("algo_final", algo); sum+=algo*3; coef+=3;
+        // Réseaux
+        let net = 0.2 * val("net_tp") + 0.2 * val("net_td") + 0.6 * val("net_exam");
+        setFinal("net_final", net);
+        sum += net * 3;
+        coef += 3;
 
-    let net = 0.2*val("net_tp")+0.2*val("net_td")+0.6*val("net_exam");
-    setFinal("net_final", net); sum+=net*3; coef+=3;
+        // ABD
+        let abd = 0.2 * val("abd_tp") + 0.2 * val("abd_td") + 0.6 * val("abd_exam");
+        setFinal("abd_final", abd);
+        sum += abd * 3;
+        coef += 3;
 
-    let abd = 0.2*val("abd_tp")+0.2*val("abd_td")+0.6*val("abd_exam");
-    setFinal("abd_final", abd); sum+=abd*3; coef+=3;
+        // Crypto
+        let crypto = 0.2 * val("crypto_tp") + 0.2 * val("crypto_td") + 0.6 * val("crypto_exam");
+        setFinal("crypto_final", crypto);
+        sum += crypto * 3;
+        coef += 3;
 
-    let crypto = 0.2*val("crypto_tp")+0.2*val("crypto_td")+0.6*val("crypto_exam");
-    setFinal("crypto_final", crypto); sum+=crypto*3; coef+=3;
+        // RO
+        let ro = val("ro_exam");
+        setFinal("ro_final", ro);
+        sum += ro;
+        coef += 1;
 
-    let ro = val("ro_exam");
-    setFinal("ro_final", ro); sum+=ro; coef+=1;
+        // C++
+        let cpp = 0.4 * val("cpp_tp") + 0.6 * val("cpp_exam");
+        setFinal("cpp_final", cpp);
+        sum += cpp * 2;
+        coef += 2;
 
-    let cpp = 0.4*val("cpp_tp")+0.6*val("cpp_exam");
-    setFinal("cpp_final", cpp); sum+=cpp*2; coef+=2;
+        // AI
+        let ai = val("ai_exam");
+        setFinal("ai_final", ai);
+        sum += ai;
+        coef += 1;
 
-    let ai = val("ai_exam");
-    setFinal("ai_final", ai); sum+=ai; coef+=1;
+        // Cyber
+        let cyber = val("cyber_exam");
+        setFinal("cyber_final", cyber);
+        sum += cyber;
+        coef += 1;
 
-    let cyber = val("cyber_exam");
-    setFinal("cyber_final", cyber); sum+=cyber; coef+=1;
-
-    document.getElementById("result").textContent =
-        "Moyenne du semestre : " + (sum/coef).toFixed(2);
+        // Calculate final average
+        const moyenne = coef > 0 ? sum / coef : 0;
+        document.getElementById("result").textContent = 
+            "Moyenne du semestre : " + moyenne.toFixed(2);
+            
+        console.log('Calculation complete. Average:', moyenne.toFixed(2));
+        
+    } catch (error) {
+        console.error('Error in calculation:', error);
+        showPopup("Erreur: " + error.message);
+    }
 }
+
+// Allow pressing Enter on the last input to calculate
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') {
+        const inputs = document.querySelectorAll('input');
+        const lastInput = inputs[inputs.length - 1];
+        if (document.activeElement === lastInput) {
+            calculate();
+        }
+    }
+});
 </script>
 
 <footer>
