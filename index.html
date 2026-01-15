@@ -1,259 +1,107 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Moyenne Semestre</title>
+<title>Moyenne Semester</title>
 
 <style>
 body {
     font-family: Arial, sans-serif;
-    background: #ffe6f0;
-    margin: 0;
+    background: #ffe4ef;
     padding: 15px;
 }
 
-h1 {
+h2 {
     text-align: center;
     color: #c2185b;
 }
 
 .module {
-    background: white;
-    border-radius: 12px;
+    background: #fff;
     padding: 12px;
+    border-radius: 12px;
     margin-bottom: 15px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
-.module h2 {
-    margin: 0 0 8px;
-    color: #d81b60;
-    font-size: 18px;
-}
-
-.inputs {
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-}
+.module.pass { border-left: 6px solid green; }
+.module.fail { border-left: 6px solid red; }
 
 input {
-    flex: 1;
-    padding: 10px;
+    width: 30%;
+    padding: 8px;
+    margin: 5px;
     font-size: 16px;
     border-radius: 8px;
     border: 1px solid #ccc;
 }
 
-input.error {
-    border: 2px solid red;
-    background: #ffecec;
-}
-
-.final {
-    margin-top: 8px;
-    font-weight: bold;
-}
-
-.green { color: green; }
-.red { color: red; }
-
 button {
     width: 100%;
     padding: 14px;
+    background: #e91e63;
+    color: white;
     font-size: 18px;
     border: none;
     border-radius: 12px;
-    background: #d81b60;
-    color: white;
+    cursor: pointer;
 }
 
-#result {
+footer {
     text-align: center;
-    margin-top: 15px;
-    font-size: 20px;
-    font-weight: bold;
+    margin-top: 20px;
+    color: #c2185b;
+    font-style: italic;
 }
-
-/* Popup */
-.popup {
+#popup {
     position: fixed;
     inset: 0;
     background: rgba(0,0,0,0.4);
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 999;
 }
-
-.popup.hidden {
-    display: none;
-}
-
-.popup-box {
+#popupBox {
     background: white;
     padding: 20px;
-    border-radius: 16px;
-    text-align: center;
-    width: 80%;
-    max-width: 300px;
+    border-radius: 12px;
 }
-
-.popup-box p {
-    font-size: 16px;
-    color: #d81b60;
-    margin-bottom: 15px;
-}
-
-.popup-box button {
-    background: #d81b60;
-    color: white;
-    border: none;
-    padding: 10px 18px;
-    border-radius: 10px;
-    font-size: 16px;
-}
-
-footer {
-    text-align: center;
-    margin-top: 25px;
-    padding: 12px;
-    font-size: 14px;
-    color: #c2185b;
-    font-style: italic;
-}
+.hidden { display: none; }
 </style>
 </head>
 
 <body>
 
-<h1>Moyenne du semestre </h1>
+<h2>Semester Average</h2>
 
-<!-- MODULES -->
-<!-- Algo -->
-<div class="module">
-<h2>Algo (coef 3)</h2>
-<div class="inputs">
-<input id="algo_tp" placeholder="TP" type="number" inputmode="decimal" step="0.01" onkeydown="jump(event,this)" onblur="validateInput(this)">
-<input id="algo_td" placeholder="TD" type="number" inputmode="decimal" step="0.01" onkeydown="jump(event,this)" onblur="validateInput(this)">
-<input id="algo_exam" placeholder="Exam" type="number" inputmode="decimal" step="0.01" onkeydown="jump(event,this)" onblur="validateInput(this)">
-</div>
-<div id="algo_final" class="final"></div>
+<div class="module" id="algo">
+    <b>Algo</b><br>
+    <input placeholder="TD">
+    <input placeholder="TP">
+    <input placeholder="Exam">
+    <p class="result"></p>
 </div>
 
-<!-- Réseaux -->
-<div class="module">
-<h2>Réseaux (coef 3)</h2>
-<div class="inputs">
-<input id="net_tp" placeholder="TP" type="number" inputmode="decimal" step="0.01" onkeydown="jump(event,this)" onblur="validateInput(this)">
-<input id="net_td" placeholder="TD" type="number" inputmode="decimal" step="0.01" onkeydown="jump(event,this)" onblur="validateInput(this)">
-<input id="net_exam" placeholder="Exam" type="number" inputmode="decimal" step="0.01" onkeydown="jump(event,this)" onblur="validateInput(this)">
-</div>
-<div id="net_final" class="final"></div>
+<div class="module" id="ro">
+    <b>RO</b><br>
+    <input placeholder="Exam">
+    <p class="result"></p>
 </div>
 
-<!-- ABD -->
-<div class="module">
-<h2>ABD (coef 3)</h2>
-<div class="inputs">
-<input id="abd_tp" placeholder="TP" type="number" inputmode="decimal" step="0.01" onkeydown="jump(event,this)" onblur="validateInput(this)">
-<input id="abd_td" placeholder="TD" type="number" inputmode="decimal" step="0.01" onkeydown="jump(event,this)" onblur="validateInput(this)">
-<input id="abd_exam" placeholder="Exam" type="number" inputmode="decimal" step="0.01" onkeydown="jump(event,this)" onblur="validateInput(this)">
-</div>
-<div id="abd_final" class="final"></div>
+<button onclick="calculate()">Calculate</button>
+
+<div id="popup" class="hidden">
+    <div id="popupBox">
+        <p id="popupMsg">⚠️ Please fill all cases (0–20)</p>
+        <button onclick="closePopup()">OK</button>
+    </div>
 </div>
 
-<!-- Crypto -->
-<div class="module">
-<h2>Crypto (coef 3)</h2>
-<div class="inputs">
-<input id="crypto_tp" placeholder="TP" type="number" inputmode="decimal" step="0.01" onkeydown="jump(event,this)" onblur="validateInput(this)">
-<input id="crypto_td" placeholder="TD" type="number" inputmode="decimal" step="0.01" onkeydown="jump(event,this)" onblur="validateInput(this)">
-<input id="crypto_exam" placeholder="Exam" type="number" inputmode="decimal" step="0.01" onkeydown="jump(event,this)" onblur="validateInput(this)">
-</div>
-<div id="crypto_final" class="final"></div>
-</div>
-
-<!-- RO -->
-<div class="module">
-<h2>RO (coef 1)</h2>
-<div class="inputs">
-<input id="ro_exam" placeholder="Exam" type="number" inputmode="decimal" step="0.01" onkeydown="jump(event,this)" onblur="validateInput(this)">
-</div>
-<div id="ro_final" class="final"></div>
-</div>
-
-<!-- C++ -->
-<div class="module">
-<h2>C++ (coef 2)</h2>
-<div class="inputs">
-<input id="cpp_tp" placeholder="TP" type="number" inputmode="decimal" step="0.01" onkeydown="jump(event,this)" onblur="validateInput(this)">
-<input id="cpp_exam" placeholder="Exam" type="number" inputmode="decimal" step="0.01" onkeydown="jump(event,this)" onblur="validateInput(this)">
-</div>
-<div id="cpp_final" class="final"></div>
-</div>
-
-<!-- AI -->
-<div class="module">
-<h2>AI (coef 1)</h2>
-<div class="inputs">
-<input id="ai_exam" placeholder="Exam" type="number" inputmode="decimal" step="0.01" onkeydown="jump(event,this)" onblur="validateInput(this)">
-</div>
-<div id="ai_final" class="final"></div>
-</div>
-
-<!-- Cyber -->
-<div class="module">
-<h2>Cybercriminalité (coef 1)</h2>
-<div class="inputs">
-<input id="cyber_exam" placeholder="Exam" type="number" inputmode="decimal" step="0.01" onkeydown="jump(event,this)" onblur="validateInput(this)">
-</div>
-<div id="cyber_final" class="final"></div>
-</div>
-
-<button type="button" onclick="calculate()">Calculer</button>
-
-<div id="result"></div>
-
-<!-- POPUP -->
-<div id="popup" class="popup hidden">
-  <div class="popup-box">
-    <p id="popupMsg"></p>
-    <button onclick="closePopup()">OK</button>
-  </div>
-</div>
+<footer>
+ya rabi samah w zahia ytel3o semester 🤲💗
+</footer>
 
 <script>
-function val(id) {
-    return parseFloat(document.getElementById(id).value);
-}
-
-function jump(e, el) {
-    if (e.key === "Enter") {
-        const inputs = Array.from(document.querySelectorAll("input"));
-        const i = inputs.indexOf(el);
-        if (i < inputs.length - 1) inputs[i + 1].focus();
-    }
-}
-
-function validateInput(el) {
-    const v = parseFloat(el.value);
-    if (isNaN(v) || v < 0 || v > 20) {
-        el.value = "";
-        el.classList.add("error");
-        showPopup("⚠️ Notes must be between 0 and 20");
-        el.focus();
-        return false;
-    }
-    el.classList.remove("error");
-    return true;
-}
-
-function allFilled() {
-    return [...document.querySelectorAll("input")].every(i => i.value !== "");
-}
-
 function showPopup(msg) {
     document.getElementById("popupMsg").textContent = msg;
     document.getElementById("popup").classList.remove("hidden");
@@ -264,56 +112,41 @@ function closePopup() {
     document.getElementById("popup").classList.add("hidden");
 }
 
-function setFinal(id, note) {
-    const el = document.getElementById(id);
-    el.textContent = "Note finale : " + note.toFixed(2);
-    el.className = "final " + (note >= 10 ? "green" : "red");
+function getValue(input) {
+    const v = parseFloat(input.value.replace(",", "."));
+    return isNaN(v) ? null : v;
+}
+
+function validateAll() {
+    const inputs = document.querySelectorAll("input");
+    for (let i of inputs) {
+        const v = getValue(i);
+        if (v === null || v < 0 || v > 20) {
+            i.focus();
+            return false;
+        }
+    }
+    return true;
 }
 
 function calculate() {
-
-    document.activeElement.blur();
-
-    if (!allFilled()) {
-        showPopup("⚠️ Please fill all cases");
+    if (!validateAll()) {
+        showPopup("⚠️ Please enter numbers between 0 and 20");
         return;
     }
 
-    let sum = 0, coef = 0;
+    // Algo (TD 20% TP 20% Exam 60) coef 3
+    let a = document.querySelectorAll("#algo input");
+    let algo = (getValue(a[0])*0.2 + getValue(a[1])*0.2 + getValue(a[2])*0.6);
+    document.querySelector("#algo .result").textContent = "Final: " + algo.toFixed(2);
+    document.getElementById("algo").className = "module " + (algo >= 10 ? "pass" : "fail");
 
-    let algo = 0.2*val("algo_tp")+0.2*val("algo_td")+0.6*val("algo_exam");
-    setFinal("algo_final", algo); sum+=algo*3; coef+=3;
-
-    let net = 0.2*val("net_tp")+0.2*val("net_td")+0.6*val("net_exam");
-    setFinal("net_final", net); sum+=net*3; coef+=3;
-
-    let abd = 0.2*val("abd_tp")+0.2*val("abd_td")+0.6*val("abd_exam");
-    setFinal("abd_final", abd); sum+=abd*3; coef+=3;
-
-    let crypto = 0.2*val("crypto_tp")+0.2*val("crypto_td")+0.6*val("crypto_exam");
-    setFinal("crypto_final", crypto); sum+=crypto*3; coef+=3;
-
-    let ro = val("ro_exam");
-    setFinal("ro_final", ro); sum+=ro; coef+=1;
-
-    let cpp = 0.4*val("cpp_tp")+0.6*val("cpp_exam");
-    setFinal("cpp_final", cpp); sum+=cpp*2; coef+=2;
-
-    let ai = val("ai_exam");
-    setFinal("ai_final", ai); sum+=ai; coef+=1;
-
-    let cyber = val("cyber_exam");
-    setFinal("cyber_final", cyber); sum+=cyber; coef+=1;
-
-    document.getElementById("result").textContent =
-        "Moyenne du semestre : " + (sum/coef).toFixed(2);
+    // RO (Exam 100%) coef 1
+    let roExam = getValue(document.querySelector("#ro input"));
+    document.querySelector("#ro .result").textContent = "Final: " + roExam.toFixed(2);
+    document.getElementById("ro").className = "module " + (roExam >= 10 ? "pass" : "fail");
 }
-
 </script>
-
-<footer>
-    next semester ndirlkom update xd stay tuned
-</footer>
 
 </body>
 </html>
