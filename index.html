@@ -253,11 +253,19 @@ function validateInput(el) {
 
 // ✅ FIXED: allFilled checks actual numeric values
 function allFilled() {
+    // blur the currently focused input to commit any value
+    if (document.activeElement.tagName === "INPUT") {
+        document.activeElement.blur();
+    }
+
     return [...document.querySelectorAll("input")].every(i => {
-        const v = parseFloat(i.value.replace(",", "."));
+        const raw = i.value.trim();
+        if (raw === "") return false; // empty
+        const v = parseFloat(raw.replace(",", "."));
         return !isNaN(v) && v >= 0 && v <= 20;
     });
 }
+
 
 function showPopup(msg) {
     document.getElementById("popupMsg").textContent = msg;
@@ -276,8 +284,7 @@ function setFinal(id, note) {
 }
 
 function calculate() {
-    // 🔹 ensure last input committed
-    document.activeElement.blur();
+
 
     if (!allFilled()) {
         showPopup("⚠️ Please fill all cases with numbers 0–20");
