@@ -3,32 +3,139 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Moyenne Semestre</title>
+<title>Moyenne Semestre 1 & 2</title>
 
 <style>
+
+:root {
+    --bg-color: #ffe6f0;
+    --tab-inactive-bg: #f8bbd0;
+    --tab-inactive-color: #880e4f;
+    --tab-active-bg: #d81b60;
+    --tab-active-color: white;
+    --module-bg: white;
+    --title-color: #c2185b;
+    --module-title-color: #d81b60;
+    --button-bg: #d81b60;
+    --button-hover: #c2185b;
+    --error-border: red;
+    --error-bg: #ffecec;
+    --green: green;
+    --red: red;
+    --border-color: #ccc;
+    --shadow: rgba(0,0,0,0.1);
+    --popup-color: #d81b60;
+    --footer-color: #c2185b;
+    --yearly-border: #f8bbd0;
+}
+
+/* ===== BLUE THEME ===== */
+body.blue-theme {
+    --bg-color: #e3f2fd;
+    --tab-inactive-bg: #bbdef5;
+    --tab-inactive-color: #0d3c55;
+    --tab-active-bg: #1976d2;
+    --tab-active-color: white;
+    --module-bg: white;
+    --title-color: #0d47a1;
+    --module-title-color: #1976d2;
+    --button-bg: #1976d2;
+    --button-hover: #0d47a1;
+    --error-border: red;
+    --error-bg: #ffecec;
+    --green: green;
+    --red: red;
+    --border-color: #ccc;
+    --shadow: rgba(0,0,0,0.1);
+    --popup-color: #1976d2;
+    --footer-color: #0d47a1;
+    --yearly-border: #bbdef5;
+}
+
 body {
     font-family: Arial, sans-serif;
-    background: #ffe6f0;
+    background: var(--bg-color);
     margin: 0;
     padding: 15px;
+    transition: background 0.3s ease;
 }
 
 h1 {
     text-align: center;
-    color: #c2185b;
+    color: var(--title-color);
+}
+
+.theme-toggle {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 15px;
+}
+
+.theme-btn {
+    background: var(--module-bg);
+    border: 2px solid var(--module-title-color);
+    border-radius: 30px;
+    padding: 8px 18px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    color: var(--module-title-color);
+    transition: 0.3s;
+}
+
+.theme-btn:hover {
+    background: var(--module-title-color);
+    color: var(--module-bg);
+}
+
+.semester-tabs {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.tab-btn {
+    padding: 12px 30px;
+    font-size: 18px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    background: var(--tab-inactive-bg);
+    color: var(--tab-inactive-color);
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.tab-btn.active {
+    background: var(--tab-active-bg);
+    color: var(--tab-active-color);
+    box-shadow: 0 2px 8px var(--shadow);
+}
+
+.tab-btn:hover:not(.active) {
+    opacity: 0.8;
+}
+
+.semester-panel {
+    display: none;
+}
+
+.semester-panel.active {
+    display: block;
 }
 
 .module {
-    background: white;
+    background: var(--module-bg);
     border-radius: 12px;
     padding: 12px;
     margin-bottom: 15px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 10px var(--shadow);
 }
 
 .module h2 {
     margin: 0 0 8px;
-    color: #d81b60;
+    color: var(--module-title-color);
     font-size: 18px;
 }
 
@@ -43,12 +150,12 @@ input {
     padding: 10px;
     font-size: 16px;
     border-radius: 8px;
-    border: 1px solid #ccc;
+    border: 1px solid var(--border-color);
 }
 
 input.error {
-    border: 2px solid red;
-    background: #ffecec;
+    border: 2px solid var(--error-border);
+    background: var(--error-bg);
 }
 
 .final {
@@ -56,8 +163,8 @@ input.error {
     font-weight: bold;
 }
 
-.green { color: green; }
-.red { color: red; }
+.green { color: var(--green); }
+.red { color: var(--red); }
 
 button {
     width: 100%;
@@ -65,19 +172,33 @@ button {
     font-size: 18px;
     border: none;
     border-radius: 12px;
-    background: #d81b60;
+    background: var(--button-bg);
     color: white;
     cursor: pointer;
+    margin-top: 10px;
+    transition: 0.3s;
 }
 
 button:hover {
-    background: #c2185b;
+    background: var(--button-hover);
 }
 
-#result {
+.result-box {
     text-align: center;
     margin-top: 15px;
-    font-size: 20px;
+    padding: 15px;
+    background: var(--module-bg);
+    border-radius: 12px;
+    box-shadow: 0 2px 6px var(--shadow);
+}
+
+.result-box p {
+    margin: 5px 0;
+    font-size: 18px;
+}
+
+.result-box .main-result {
+    font-size: 24px;
     font-weight: bold;
 }
 
@@ -97,7 +218,7 @@ button:hover {
 }
 
 .popup-box {
-    background: white;
+    background: var(--module-bg);
     padding: 20px;
     border-radius: 16px;
     text-align: center;
@@ -107,17 +228,18 @@ button:hover {
 
 .popup-box p {
     font-size: 16px;
-    color: #d81b60;
+    color: var(--popup-color);
     margin-bottom: 15px;
 }
 
 .popup-box button {
-    background: #d81b60;
+    background: var(--button-bg);
     color: white;
     border: none;
     padding: 10px 18px;
     border-radius: 10px;
     font-size: 16px;
+    width: auto;
 }
 
 footer {
@@ -125,112 +247,256 @@ footer {
     margin-top: 25px;
     padding: 12px;
     font-size: 14px;
-    color: #c2185b;
+    color: var(--footer-color);
     font-style: italic;
+}
+
+.yearly-result {
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 2px solid var(--yearly-border);
 }
 </style>
 </head>
 
 <body>
 
-<h1>Moyenne du semestre</h1>
-
-<!-- MODULES -->
-<!-- Algo -->
-<div class="module">
-<h2>Algo (coef 3)</h2>
-<div class="inputs">
-<input id="algo_tp" placeholder="TP" type="number" min="0" max="20" step="0.01">
-<input id="algo_td" placeholder="TD" type="number" min="0" max="20" step="0.01">
-<input id="algo_exam" placeholder="Exam" type="number" min="0" max="20" step="0.01">
-</div>
-<div id="algo_final" class="final"></div>
+<div class="theme-toggle">
+    <button class="theme-btn" onclick="toggleTheme()">Change the theme</button>
 </div>
 
-<!-- Réseaux -->
-<div class="module">
-<h2>Réseaux (coef 3)</h2>
-<div class="inputs">
-<input id="net_tp" placeholder="TP" type="number" min="0" max="20" step="0.01">
-<input id="net_td" placeholder="TD" type="number" min="0" max="20" step="0.01">
-<input id="net_exam" placeholder="Exam" type="number" min="0" max="20" step="0.01">
-</div>
-<div id="net_final" class="final"></div>
+<h1>SSI Semesters</h1>
+
+<div class="semester-tabs">
+    <button class="tab-btn active" onclick="switchSemester(1)">Semestre 1</button>
+    <button class="tab-btn" onclick="switchSemester(2)">Semestre 2</button>
 </div>
 
-<!-- ABD -->
-<div class="module">
-<h2>ABD (coef 3)</h2>
-<div class="inputs">
-<input id="abd_tp" placeholder="TP" type="number" min="0" max="20" step="0.01">
-<input id="abd_td" placeholder="TD" type="number" min="0" max="20" step="0.01">
-<input id="abd_exam" placeholder="Exam" type="number" min="0" max="20" step="0.01">
-</div>
-<div id="abd_final" class="final"></div>
+<!-- SEMESTRE 1 -->
+<div id="semester1" class="semester-panel active">
+    <!-- Algo -->
+    <div class="module">
+        <h2>Algo (coef 3)</h2>
+        <div class="inputs">
+            <input id="algo_tp" placeholder="TP" type="number" min="0" max="20" step="0.01">
+            <input id="algo_td" placeholder="TD" type="number" min="0" max="20" step="0.01">
+            <input id="algo_exam" placeholder="Exam" type="number" min="0" max="20" step="0.01">
+        </div>
+        <div id="algo_final" class="final"></div>
+    </div>
+
+    <!-- Réseaux S1 -->
+    <div class="module">
+        <h2>Réseaux (coef 3)</h2>
+        <div class="inputs">
+            <input id="net_tp" placeholder="TP" type="number" min="0" max="20" step="0.01">
+            <input id="net_td" placeholder="TD" type="number" min="0" max="20" step="0.01">
+            <input id="net_exam" placeholder="Exam" type="number" min="0" max="20" step="0.01">
+        </div>
+        <div id="net_final" class="final"></div>
+    </div>
+
+    <!-- ABD -->
+    <div class="module">
+        <h2>ABD (coef 3)</h2>
+        <div class="inputs">
+            <input id="abd_tp" placeholder="TP" type="number" min="0" max="20" step="0.01">
+            <input id="abd_td" placeholder="TD" type="number" min="0" max="20" step="0.01">
+            <input id="abd_exam" placeholder="Exam" type="number" min="0" max="20" step="0.01">
+        </div>
+        <div id="abd_final" class="final"></div>
+    </div>
+
+    <!-- Crypto -->
+    <div class="module">
+        <h2>Crypto (coef 3)</h2>
+        <div class="inputs">
+            <input id="crypto_tp" placeholder="TP" type="number" min="0" max="20" step="0.01">
+            <input id="crypto_td" placeholder="TD" type="number" min="0" max="20" step="0.01">
+            <input id="crypto_exam" placeholder="Exam" type="number" min="0" max="20" step="0.01">
+        </div>
+        <div id="crypto_final" class="final"></div>
+    </div>
+
+    <!-- RO -->
+    <div class="module">
+        <h2>RO (coef 1)</h2>
+        <div class="inputs">
+            <input id="ro_exam" placeholder="Exam" type="number" min="0" max="20" step="0.01">
+        </div>
+        <div id="ro_final" class="final"></div>
+    </div>
+
+    <!-- C++ -->
+    <div class="module">
+        <h2>C++ (coef 2)</h2>
+        <div class="inputs">
+            <input id="cpp_tp" placeholder="TP" type="number" min="0" max="20" step="0.01">
+            <input id="cpp_exam" placeholder="Exam" type="number" min="0" max="20" step="0.01">
+        </div>
+        <div id="cpp_final" class="final"></div>
+    </div>
+
+    <!-- AI -->
+    <div class="module">
+        <h2>AI (coef 1)</h2>
+        <div class="inputs">
+            <input id="ai_exam" placeholder="Exam" type="number" min="0" max="20" step="0.01">
+        </div>
+        <div id="ai_final" class="final"></div>
+    </div>
+
+    <!-- Cyber -->
+    <div class="module">
+        <h2>Cybercriminalité (coef 1)</h2>
+        <div class="inputs">
+            <input id="cyber_exam" placeholder="Exam" type="number" min="0" max="20" step="0.01">
+        </div>
+        <div id="cyber_final" class="final"></div>
+    </div>
 </div>
 
-<!-- Crypto -->
-<div class="module">
-<h2>Crypto (coef 3)</h2>
-<div class="inputs">
-<input id="crypto_tp" placeholder="TP" type="number" min="0" max="20" step="0.01">
-<input id="crypto_td" placeholder="TD" type="number" min="0" max="20" step="0.01">
-<input id="crypto_exam" placeholder="Exam" type="number" min="0" max="20" step="0.01">
-</div>
-<div id="crypto_final" class="final"></div>
+<!-- SEMESTRE 2 -->
+<div id="semester2" class="semester-panel">
+    <!-- Dist App -->
+    <div class="module">
+        <h2>Dist App (coef 3)</h2>
+        <div class="inputs">
+            <input id="dist_tp" placeholder="TP" type="number" min="0" max="20" step="0.01">
+            <input id="dist_td" placeholder="TD" type="number" min="0" max="20" step="0.01">
+            <input id="dist_exam" placeholder="Exam" type="number" min="0" max="20" step="0.01">
+        </div>
+        <div id="dist_final" class="final"></div>
+    </div>
+
+    <!-- Réseaux S2 -->
+    <div class="module">
+        <h2>Réseaux (coef 3)</h2>
+        <div class="inputs">
+            <input id="net2_tp" placeholder="TP" type="number" min="0" max="20" step="0.01">
+            <input id="net2_td" placeholder="TD" type="number" min="0" max="20" step="0.01">
+            <input id="net2_exam" placeholder="Exam" type="number" min="0" max="20" step="0.01">
+        </div>
+        <div id="net2_final" class="final"></div>
+    </div>
+
+    <!-- SE -->
+    <div class="module">
+        <h2>SE (coef 3)</h2>
+        <div class="inputs">
+            <input id="se_tp" placeholder="TP" type="number" min="0" max="20" step="0.01">
+            <input id="se_td" placeholder="TD" type="number" min="0" max="20" step="0.01">
+            <input id="se_exam" placeholder="Exam" type="number" min="0" max="20" step="0.01">
+        </div>
+        <div id="se_final" class="final"></div>
+    </div>
+
+    <!-- Sec App -->
+    <div class="module">
+        <h2>Sec App (coef 3)</h2>
+        <div class="inputs">
+            <input id="secapp_tp" placeholder="TP" type="number" min="0" max="20" step="0.01">
+            <input id="secapp_td" placeholder="TD" type="number" min="0" max="20" step="0.01">
+            <input id="secapp_exam" placeholder="Exam" type="number" min="0" max="20" step="0.01">
+        </div>
+        <div id="secapp_final" class="final"></div>
+    </div>
+
+    <!-- Security -->
+    <div class="module">
+        <h2>Security (coef 2)</h2>
+        <div class="inputs">
+            <input id="security_tp" placeholder="TP" type="number" min="0" max="20" step="0.01">
+            <input id="security_exam" placeholder="Exam" type="number" min="0" max="20" step="0.01">
+        </div>
+        <div id="security_final" class="final"></div>
+    </div>
+
+    <!-- Audit -->
+    <div class="module">
+        <h2>Audit (coef 1)</h2>
+        <div class="inputs">
+            <input id="audit_exam" placeholder="Exam" type="number" min="0" max="20" step="0.01">
+        </div>
+        <div id="audit_final" class="final"></div>
+    </div>
+
+    <!-- Entrepreneuriat -->
+    <div class="module">
+        <h2>Entrepreneuriat (coef 1)</h2>
+        <div class="inputs">
+            <input id="entrep_exam" placeholder="Exam" type="number" min="0" max="20" step="0.01">
+        </div>
+        <div id="entrep_final" class="final"></div>
+    </div>
+
+    <!-- Aspect Juridique CPEF -->
+    <div class="module">
+        <h2>Aspect Juridique CPEF (coef 1)</h2>
+        <div class="inputs">
+            <input id="juridique_exam" placeholder="Exam" type="number" min="0" max="20" step="0.01">
+        </div>
+        <div id="juridique_final" class="final"></div>
+    </div>
 </div>
 
-<!-- RO -->
-<div class="module">
-<h2>RO (coef 1)</h2>
-<div class="inputs">
-<input id="ro_exam" placeholder="Exam" type="number" min="0" max="20" step="0.01">
-</div>
-<div id="ro_final" class="final"></div>
-</div>
+<button type="button" onclick="calculate()">Calculate</button>
 
-<!-- C++ -->
-<div class="module">
-<h2>C++ (coef 2)</h2>
-<div class="inputs">
-<input id="cpp_tp" placeholder="TP" type="number" min="0" max="20" step="0.01">
-<input id="cpp_exam" placeholder="Exam" type="number" min="0" max="20" step="0.01">
-</div>
-<div id="cpp_final" class="final"></div>
-</div>
-
-<!-- AI -->
-<div class="module">
-<h2>AI (coef 1)</h2>
-<div class="inputs">
-<input id="ai_exam" placeholder="Exam" type="number" min="0" max="20" step="0.01">
-</div>
-<div id="ai_final" class="final"></div>
-</div>
-
-<!-- Cyber -->
-<div class="module">
-<h2>Cybercriminalité (coef 1)</h2>
-<div class="inputs">
-<input id="cyber_exam" placeholder="Exam" type="number" min="0" max="20" step="0.01">
-</div>
-<div id="cyber_final" class="final"></div>
-</div>
-
-<button type="button" onclick="calculate()">Calculer</button>
-
-<div id="result"></div>
+<div id="result" class="result-box"></div>
 
 <!-- POPUP -->
 <div id="popup" class="popup hidden">
-  <div class="popup-box">
-    <p id="popupMsg"></p>
-    <button onclick="closePopup()">OK</button>
-  </div>
+    <div class="popup-box">
+        <p id="popupMsg"></p>
+        <button onclick="closePopup()">OK</button>
+    </div>
 </div>
 
+<footer>
+ya rabi zahia tetrefah <br> chokran 3la da3wa
+</footer>
+
 <script>
-// SIMPLIFIED VALIDATION - WORKING VERSION
+let currentSemester = 1;
+let s1Avg = null;
+let s2Avg = null;
+
+function toggleTheme() {
+    document.body.classList.toggle('blue-theme');
+    // Save preference
+    const isBlue = document.body.classList.contains('blue-theme');
+    localStorage.setItem('theme', isBlue ? 'blue' : 'pink');
+}
+
+function loadTheme() {
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'blue') {
+        document.body.classList.add('blue-theme');
+    } else {
+        document.body.classList.remove('blue-theme');
+    }
+}
+
+function switchSemester(sem) {
+    currentSemester = sem;
+    
+    // Update tab buttons
+    document.querySelectorAll('.tab-btn').forEach((btn, idx) => {
+        if ((sem === 1 && idx === 0) || (sem === 2 && idx === 1)) {
+            btn.classList.add('active');
+        } else {
+            btn.classList.remove('active');
+        }
+    });
+    
+    // Update panels
+    document.getElementById('semester1').classList.toggle('active', sem === 1);
+    document.getElementById('semester2').classList.toggle('active', sem === 2);
+    
+    // Update display to show current semester's result
+    updateDisplay();
+}
+
 function getValue(id) {
     const element = document.getElementById(id);
     if (!element) return 0;
@@ -243,7 +509,7 @@ function validateInput(input) {
     const value = input.value.trim();
     if (value === '') {
         input.classList.remove("error");
-        return true; // Allow empty
+        return true;
     }
     
     const num = parseFloat(value.replace(",", "."));
@@ -273,29 +539,23 @@ function setFinal(id, note) {
     el.className = "final " + (note >= 10 ? "green" : "red");
 }
 
-// SIMPLE CHECK - Only validate that Exam fields are filled
-function validateExamFields() {
-    const examFields = [
-        'algo_exam', 'net_exam', 'abd_exam', 'crypto_exam',
-        'ro_exam', 'cpp_exam', 'ai_exam', 'cyber_exam'
-    ];
-    
+function validateExamFields(prefixes) {
     let allValid = true;
     
-    examFields.forEach(fieldId => {
-        const input = document.getElementById(fieldId);
-        if (input) {
-            const value = input.value.trim();
+    prefixes.forEach(prefix => {
+        const examInput = document.getElementById(prefix + '_exam');
+        if (examInput) {
+            const value = examInput.value.trim();
             if (value === '') {
-                input.classList.add('error');
+                examInput.classList.add('error');
                 allValid = false;
             } else {
                 const num = parseFloat(value.replace(',', '.'));
                 if (isNaN(num) || num < 0 || num > 20) {
-                    input.classList.add('error');
+                    examInput.classList.add('error');
                     allValid = false;
                 } else {
-                    input.classList.remove('error');
+                    examInput.classList.remove('error');
                 }
             }
         }
@@ -304,97 +564,177 @@ function validateExamFields() {
     return allValid;
 }
 
-function calculate() {
-    console.log('Calculate function called');
-    
-    // Clear all errors first
-    document.querySelectorAll('input').forEach(input => {
+function calculateSemester1() {
+    // Clear errors for S1 only
+    document.querySelectorAll('#semester1 input').forEach(input => {
         input.classList.remove('error');
     });
     
-    // Only validate Exam fields (most important)
-    if (!validateExamFields()) {
-        showPopup("⚠️ Veuillez remplir toutes les notes d'Exam (entre 0 et 20)");
+    const examPrefixes = ['algo', 'net', 'abd', 'crypto', 'ro', 'cpp', 'ai', 'cyber'];
+    if (!validateExamFields(examPrefixes)) {
+        showPopup("Veuillez remplir toutes les notes d'Exam (entre 0 et 20) pour le Semestre 1");
+        return null;
+    }
+    
+    let sum = 0, coef = 0;
+    
+    // Algo
+    let algo = 0.2 * getValue("algo_tp") + 0.2 * getValue("algo_td") + 0.6 * getValue("algo_exam");
+    setFinal("algo_final", algo);
+    sum += algo * 3; coef += 3;
+    
+    // Réseaux
+    let net = 0.2 * getValue("net_tp") + 0.2 * getValue("net_td") + 0.6 * getValue("net_exam");
+    setFinal("net_final", net);
+    sum += net * 3; coef += 3;
+    
+    // ABD
+    let abd = 0.2 * getValue("abd_tp") + 0.2 * getValue("abd_td") + 0.6 * getValue("abd_exam");
+    setFinal("abd_final", abd);
+    sum += abd * 3; coef += 3;
+    
+    // Crypto
+    let crypto = 0.2 * getValue("crypto_tp") + 0.2 * getValue("crypto_td") + 0.6 * getValue("crypto_exam");
+    setFinal("crypto_final", crypto);
+    sum += crypto * 3; coef += 3;
+    
+    // RO
+    let ro = getValue("ro_exam");
+    setFinal("ro_final", ro);
+    sum += ro; coef += 1;
+    
+    // C++
+    let cpp = 0.4 * getValue("cpp_tp") + 0.6 * getValue("cpp_exam");
+    setFinal("cpp_final", cpp);
+    sum += cpp * 2; coef += 2;
+    
+    // AI
+    let ai = getValue("ai_exam");
+    setFinal("ai_final", ai);
+    sum += ai; coef += 1;
+    
+    // Cyber
+    let cyber = getValue("cyber_exam");
+    setFinal("cyber_final", cyber);
+    sum += cyber; coef += 1;
+    
+    return coef > 0 ? sum / coef : 0;
+}
+
+function calculateSemester2() {
+    // Clear errors for S2 only
+    document.querySelectorAll('#semester2 input').forEach(input => {
+        input.classList.remove('error');
+    });
+    
+    const examPrefixes = ['dist', 'net2', 'se', 'secapp', 'security', 'audit', 'entrep', 'juridique'];
+    if (!validateExamFields(examPrefixes)) {
+        showPopup("Veuillez remplir toutes les notes d'Exam (entre 0 et 20) pour le Semestre 2");
+        return null;
+    }
+    
+    let sum = 0, coef = 0;
+    
+    // Dist App
+    let dist = 0.2 * getValue("dist_tp") + 0.2 * getValue("dist_td") + 0.6 * getValue("dist_exam");
+    setFinal("dist_final", dist);
+    sum += dist * 3; coef += 3;
+    
+    // Réseaux S2
+    let net2 = 0.2 * getValue("net2_tp") + 0.2 * getValue("net2_td") + 0.6 * getValue("net2_exam");
+    setFinal("net2_final", net2);
+    sum += net2 * 3; coef += 3;
+    
+    // SE
+    let se = 0.2 * getValue("se_tp") + 0.2 * getValue("se_td") + 0.6 * getValue("se_exam");
+    setFinal("se_final", se);
+    sum += se * 3; coef += 3;
+    
+    // Sec App
+    let secapp = 0.2 * getValue("secapp_tp") + 0.2 * getValue("secapp_td") + 0.6 * getValue("secapp_exam");
+    setFinal("secapp_final", secapp);
+    sum += secapp * 3; coef += 3;
+    
+    // Security (TP 40%, Exam 60%)
+    let security = 0.4 * getValue("security_tp") + 0.6 * getValue("security_exam");
+    setFinal("security_final", security);
+    sum += security * 2; coef += 2;
+    
+    // Audit
+    let audit = getValue("audit_exam");
+    setFinal("audit_final", audit);
+    sum += audit; coef += 1;
+    
+    // Entrepreneuriat
+    let entrep = getValue("entrep_exam");
+    setFinal("entrep_final", entrep);
+    sum += entrep; coef += 1;
+    
+    // Aspect Juridique
+    let juridique = getValue("juridique_exam");
+    setFinal("juridique_final", juridique);
+    sum += juridique; coef += 1;
+    
+    return coef > 0 ? sum / coef : 0;
+}
+
+function updateDisplay() {
+    const resultDiv = document.getElementById("result");
+    
+    if (s1Avg === null && s2Avg === null) {
+        resultDiv.innerHTML = '<p> Remplissez les notes et cliquez sur Calculate</p>';
         return;
     }
     
-    try {
-        let sum = 0, coef = 0;
-
-        // Algo - All fields required for calculation
-        let algo_tp = getValue("algo_tp");
-        let algo_td = getValue("algo_td");
-        let algo_exam = getValue("algo_exam");
-        let algo = 0.2 * algo_tp + 0.2 * algo_td + 0.6 * algo_exam;
-        setFinal("algo_final", algo);
-        sum += algo * 3;
-        coef += 3;
-
-        // Réseaux
-        let net_tp = getValue("net_tp");
-        let net_td = getValue("net_td");
-        let net_exam = getValue("net_exam");
-        let net = 0.2 * net_tp + 0.2 * net_td + 0.6 * net_exam;
-        setFinal("net_final", net);
-        sum += net * 3;
-        coef += 3;
-
-        // ABD
-        let abd_tp = getValue("abd_tp");
-        let abd_td = getValue("abd_td");
-        let abd_exam = getValue("abd_exam");
-        let abd = 0.2 * abd_tp + 0.2 * abd_td + 0.6 * abd_exam;
-        setFinal("abd_final", abd);
-        sum += abd * 3;
-        coef += 3;
-
-        // Crypto
-        let crypto_tp = getValue("crypto_tp");
-        let crypto_td = getValue("crypto_td");
-        let crypto_exam = getValue("crypto_exam");
-        let crypto = 0.2 * crypto_tp + 0.2 * crypto_td + 0.6 * crypto_exam;
-        setFinal("crypto_final", crypto);
-        sum += crypto * 3;
-        coef += 3;
-
-        // RO
-        let ro = getValue("ro_exam");
-        setFinal("ro_final", ro);
-        sum += ro;
-        coef += 1;
-
-        // C++
-        let cpp_tp = getValue("cpp_tp");
-        let cpp_exam = getValue("cpp_exam");
-        let cpp = 0.4 * cpp_tp + 0.6 * cpp_exam;
-        setFinal("cpp_final", cpp);
-        sum += cpp * 2;
-        coef += 2;
-
-        // AI
-        let ai = getValue("ai_exam");
-        setFinal("ai_final", ai);
-        sum += ai;
-        coef += 1;
-
-        // Cyber
-        let cyber = getValue("cyber_exam");
-        setFinal("cyber_final", cyber);
-        sum += cyber;
-        coef += 1;
-
-        // Calculate final average
-        const moyenne = coef > 0 ? sum / coef : 0;
-        const resultDiv = document.getElementById("result");
-        resultDiv.textContent = "Moyenne du semestre : " + moyenne.toFixed(2);
-        resultDiv.style.color = moyenne >= 10 ? "green" : "red";
-        
-        console.log('Calculation complete. Average:', moyenne.toFixed(2));
-        
-    } catch (error) {
-        console.error('Error in calculation:', error);
-        showPopup("Erreur de calcul: " + error.message);
+    let html = '';
+    
+    // Show current semester's average prominently
+    if (currentSemester === 1 && s1Avg !== null) {
+        html += `<p class="main-result" style="color: ${s1Avg >= 10 ? 'green' : 'red'}">
+            Semestre 1 : ${s1Avg.toFixed(2)}
+        </p>`;
+    } else if (currentSemester === 2 && s2Avg !== null) {
+        html += `<p class="main-result" style="color: ${s2Avg >= 10 ? 'green' : 'red'}">
+            Semestre 2 : ${s2Avg.toFixed(2)}
+        </p>`;
     }
+    
+    // Show both averages if they exist
+    let s1Display = s1Avg !== null ? s1Avg.toFixed(2) : '—';
+    let s2Display = s2Avg !== null ? s2Avg.toFixed(2) : '—';
+    
+    html += `<p>Semestre 1 : ${s1Display} &nbsp;|&nbsp; Semestre 2 : ${s2Display}</p>`;
+    
+    
+    // Show yearly average only if BOTH semesters are calculated
+    if (s1Avg !== null && s2Avg !== null) {
+        const yearlyAvg = (s1Avg + s2Avg) / 2;
+        html += `<div class="yearly-result">
+                     <strong>Moyenne annuelle : ${yearlyAvg.toFixed(2)}</strong>
+                     <span style="color: ${yearlyAvg >= 10 ? 'green' : 'red'}">${yearlyAvg >= 10 ? 'Validé' : ' Non validé'}</span>
+                 </div>`;
+    }
+    
+    resultDiv.innerHTML = html;
+}
+
+function calculate() {
+    console.log('Calculate called for semester', currentSemester);
+    
+    // Only calculate the semester we're currently viewing
+    if (currentSemester === 1) {
+        const avg = calculateSemester1();
+        if (avg !== null) {
+            s1Avg = avg;
+        }
+    } else {
+        const avg = calculateSemester2();
+        if (avg !== null) {
+            s2Avg = avg;
+        }
+    }
+    
+    updateDisplay();
 }
 
 // Add input validation on blur
@@ -408,8 +748,8 @@ document.querySelectorAll('input').forEach(input => {
             e.preventDefault();
             validateInput(this);
             
-            // Move to next input or calculate
-            const inputs = Array.from(document.querySelectorAll('input'));
+            const panel = this.closest('.semester-panel');
+            const inputs = Array.from(panel.querySelectorAll('input'));
             const index = inputs.indexOf(this);
             if (index < inputs.length - 1) {
                 inputs[index + 1].focus();
@@ -420,13 +760,11 @@ document.querySelectorAll('input').forEach(input => {
     });
 });
 
-// Initialize
-console.log('Grade calculator ready');
-</script>
+// Load saved theme on startup
+loadTheme();
 
-<footer>
-next semester ndirlkom update XD stay tuned
-</footer>
+console.log('Grade calculator with independent semesters + theme toggle ready');
+</script>
 
 </body>
 </html>
